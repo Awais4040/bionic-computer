@@ -1,0 +1,158 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║           ✅ cPANEL DEPLOYMENT QUICK CHECKLIST                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+🚀 DEPLOY TO cPANEL IN 5 STEPS
+
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 1: UPLOAD PROJECT FILES
+─────────────────────────────
+
+[ ] Option A - File Manager:
+    1. Go to cPanel → File Manager
+    2. Open public_html folder
+    3. Create folder: bionic-computer
+    4. Upload all project files (drag & drop)
+    
+[ ] Option B - FTP:
+    1. Get FTP credentials from cPanel
+    2. Use FileZilla or similar
+    3. Upload to: public_html/bionic-computer
+    
+[ ] Option C - SSH:
+    1. Connect via SSH
+    2. cd ~/public_html/bionic-computer
+    3. Upload files
+
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 2: INSTALL DEPENDENCIES
+────────────────────────────
+
+[ ] Via SSH or cPanel Terminal:
+
+    cd ~/public_html/bionic-computer
+    npm install
+
+[ ] Wait for completion (2-5 minutes)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 3: CREATE NODE.JS APP IN CPANEL
+─────────────────────────────────────
+
+[ ] Go to: cPanel → Setup Node.js App
+
+[ ] Fill form:
+    ✓ Node.js Version: 20.20
+    ✓ App Mode: Production
+    ✓ App URL: bioniccomputer.com.pk
+    ✓ App Root: /home/USERNAME/public_html/bionic-computer
+    ✓ Startup File: npm start
+
+[ ] Add Environment Variable:
+    ✓ Name: ANTHROPIC_API_KEY
+    ✓ Value: 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
+
+[ ] Click "Create"
+
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 4: VERIFY APP IS RUNNING
+─────────────────────────────
+
+[ ] Go back to: cPanel → Setup Node.js App
+[ ] Your app should show: Status = Running
+[ ] Check logs if not running: View Logs button
+
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 5: TEST YOUR WEBSITE
+─────────────────────────
+
+[ ] Open: https://bioniccomputer.com.pk
+[ ] Website loads? YES / NO
+[ ] Click chat button? YES / NO
+[ ] Try asking chatbot a question? YES / NO
+[ ] Test on mobile? YES / NO
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ IF ALL YES → YOUR WEBSITE IS LIVE! 🎉
+
+═══════════════════════════════════════════════════════════════════════════════
+
+IMPORTANT NOTES:
+
+⚠️ MAKE SURE:
+  • Node.js version is 20.20
+  • App Mode is "Production" (not Development)
+  • ANTHROPIC_API_KEY is added as Environment Variable
+  • App Root path is correct (replace USERNAME with your cPanel username)
+  • Startup File is: npm start
+
+🔍 FIND YOUR USERNAME:
+  1. Go to cPanel Home
+  2. Look at top-right corner
+  3. Shows: "You are logged in as: USERNAME"
+  4. Use that in App Root path
+
+📝 YOUR APP ROOT SHOULD BE:
+  /home/YOUR_USERNAME/public_html/bionic-computer
+
+  Example (if username is "bionicuser"):
+  /home/bionicuser/public_html/bionic-computer
+
+═══════════════════════════════════════════════════════════════════════════════
+
+TROUBLESHOOTING:
+
+❌ "Module not found" error?
+  → SSH: cd ~/public_html/bionic-computer && npm install
+  → Try again
+
+❌ "App not starting" in cPanel?
+  → Check View Logs
+  → Look for error messages
+  → Make sure API key is set
+
+❌ "Domain not loading"?
+  → Wait 24 hours for DNS
+  → Check domain points to public_html/bionic-computer
+  → Clear browser cache
+
+❌ "Chatbot not responding"?
+  → Add payment method to Anthropic
+  → Verify API key in Environment Variables
+  → Check cPanel logs
+
+═══════════════════════════════════════════════════════════════════════════════
+
+AFTER DEPLOYMENT:
+
+✅ Enable SSL/HTTPS:
+   cPanel → AutoSSL (usually auto)
+   or cPanel → SSL/TLS
+
+✅ Monitor app:
+   cPanel → Setup Node.js App → View your app
+
+✅ Restart if needed:
+   cPanel → Setup Node.js App → Restart button
+
+✅ Update code:
+   SSH: git pull && npm install
+
+═══════════════════════════════════════════════════════════════════════════════
+
+YOUR LIVE WEBSITE:
+🌐 https://bioniccomputer.com.pk
+
+═══════════════════════════════════════════════════════════════════════════════
+
+READY? START WITH STEP 1! 🚀
+
+Need help? Let me know when you complete each step!
+
+═══════════════════════════════════════════════════════════════════════════════

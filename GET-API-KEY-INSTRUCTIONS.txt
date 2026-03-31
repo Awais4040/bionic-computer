@@ -1,0 +1,117 @@
+📝 HOW TO GET AND ADD YOUR API KEY
+
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 1: GET YOUR API KEY (5 minutes)
+────────────────────────────────────
+
+1. Open: https://console.anthropic.com/
+2. Click "Sign Up" (it's FREE)
+3. Fill in your details:
+   - Email
+   - Password
+   - Accept terms
+4. Click "Create Account"
+5. Check your email and verify
+6. Log back in to console
+7. Go to "API Keys" menu
+8. Click "Create Key" button
+9. Copy the key (starts with: sk-ant-v0-...)
+
+EXAMPLE KEY (don't use this):
+sk-ant-v0-fZ5X8nK2pQrL9wJmYvB3hC6dE7fG8jI9kO0pL1mN2oQ3rS4tU5vW6xY7zA8
+
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 2: ADD KEY TO .env.local FILE
+─────────────────────────────────
+
+The file is located at: .env.local
+
+Current content:
+  ANTHROPIC_API_KEY=sk-ant-YOUR_API_KEY_HERE
+
+Change it to (replace with YOUR actual key):
+  ANTHROPIC_API_KEY=sk-ant-v0-fZ5X8nK2pQrL9wJmYvB3hC6dE7fG8jI9kO0pL1mN2oQ3rS4tU5vW6xY7zA8
+
+IMPORTANT:
+  ✓ Don't add spaces
+  ✓ Don't add quotes
+  ✓ Keep the whole line exactly as is
+  ✓ Only replace "sk-ant-YOUR_API_KEY_HERE" part
+
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 3: VERIFY KEY IS ADDED
+──────────────────────────
+
+After adding, your .env.local should look like:
+
+# Get your API key from: https://console.anthropic.com/
+
+ANTHROPIC_API_KEY=sk-ant-v0-YOUR_ACTUAL_KEY_HERE
+
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 4: RESTART DOCKER WITH KEY
+───────────────────────────────
+
+Run this command (replace YOUR_KEY with actual key):
+
+docker rm -f bionic-web
+
+docker build -t bionic-computer:latest .
+
+docker run -d -p 3000:3000 \
+  -e ANTHROPIC_API_KEY=sk-ant-v0-YOUR_ACTUAL_KEY_HERE \
+  bionic-computer:latest
+
+OR simpler - just run:
+
+docker rm -f bionic-web && docker build -t bionic-computer:latest . && \
+docker run -d -p 3000:3000 --env-file .env.local bionic-computer:latest
+
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 5: TEST IT WORKS
+────────────────────
+
+1. Wait 10 seconds
+2. Go to: http://localhost:3000
+3. Click blue chat button (bottom-right)
+4. Type: "My computer is slow, what should I do?"
+5. AI should respond with troubleshooting steps!
+
+═══════════════════════════════════════════════════════════════════════════════
+
+TROUBLESHOOTING:
+
+❌ "Failed to get response"
+→ API key not set correctly
+→ Check .env.local file
+→ Restart Docker
+
+❌ "Invalid API key"
+→ Key has typo or spaces
+→ Copy key again from Anthropic
+→ Make sure it starts with "sk-ant-"
+
+❌ "API rate limit exceeded"
+→ You've used your free credits
+→ Upgrade account at console.anthropic.com
+→ Or wait for monthly reset
+
+═══════════════════════════════════════════════════════════════════════════════
+
+NEED HELP?
+
+1. Check your API key is correct
+2. Verify no spaces or typos
+3. Make sure .env.local is saved
+4. Restart Docker
+5. Clear browser cache (Ctrl+Shift+Delete)
+6. Try again
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ ONCE YOU COMPLETE THESE STEPS, YOUR CHATBOT WILL BE FULLY FUNCTIONAL!

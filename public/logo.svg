@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <!-- Background -->
+  <rect width="200" height="60" fill="#ffffff" rx="10"/>
+  
+  <!-- Circuit pattern (tech style) -->
+  <circle cx="25" cy="30" r="12" fill="#0052CC" opacity="0.8"/>
+  <circle cx="25" cy="30" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/>
+  
+  <!-- Lines connecting (tech aesthetic) -->
+  <line x1="37" y1="30" x2="55" y2="30" stroke="#0052CC" stroke-width="2"/>
+  <circle cx="60" cy="30" r="4" fill="#0052CC"/>
+  
+  <!-- Text: Bionic -->
+  <text x="75" y="38" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1A1A1A">Bionic</text>
+  
+  <!-- Text: Computer -->
+  <text x="75" y="55" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#FF6B35">COMPUTER</text>
+  
+  <!-- Accent dot -->
+  <circle cx="195" cy="15" r="3" fill="#FF6B35"/>
+</svg>

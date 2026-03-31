@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <!-- Plus Sign -->
+  <g id="plus">
+    <!-- Vertical bar -->
+    <rect x="110" y="30" width="30" height="90" fill="#2E7DB8" rx="4"/>
+    <!-- Horizontal bar -->
+    <rect x="70" y="60" width="120" height="30" fill="#2E7DB8" rx="4"/>
+  </g>
+  
+  <!-- Wrench/Tool Body -->
+  <g id="wrench">
+    <!-- Top horizontal line -->
+    <line x1="190" y1="50" x2="270" y2="50" stroke="#2E7DB8" stroke-width="35" stroke-linecap="round"/>
+    
+    <!-- Right curved part -->
+    <path d="M 250 40 Q 280 40 290 60 Q 290 90 270 110 Q 250 110 250 90 Z" fill="#2E7DB8"/>
+    
+    <!-- Bottom curved part -->
+    <path d="M 130 130 Q 155 155 210 155 Q 260 155 270 140" fill="none" stroke="#2E7DB8" stroke-width="35" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Inner opening -->
+    <ellipse cx="210" cy="85" rx="75" ry="60" fill="white"/>
+  </g>
+</svg>

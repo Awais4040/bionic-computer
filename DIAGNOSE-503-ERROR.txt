@@ -1,0 +1,51 @@
+🔴 ERROR 503 - SERVICE UNAVAILABLE
+
+This means:
+- Website uploaded ✓
+- Node.js app created ✓
+- But app is NOT running properly ✗
+
+COMMON CAUSES:
+1. Dependencies not installed (npm install not done)
+2. API key not set in Environment Variables
+3. Wrong App Root path
+4. Wrong Startup File command
+5. Out of memory
+
+═══════════════════════════════════════════════════════════════════════════════
+
+DIAGNOSTIC STEPS:
+
+1. CHECK cPANEL STATUS
+   → Go to: cPanel → Setup Node.js App
+   → Look at Status column
+   → What does it say? (Running / Error / Stopped)
+
+2. CHECK LOGS
+   → In cPanel → Setup Node.js App
+   → Click your app name
+   → Scroll down to "View Logs"
+   → Copy/paste any error messages
+
+3. CHECK IF npm install RAN
+   → Via SSH: cd ~/public_html/bionic-computer && ls -la
+   → Do you see "node_modules" folder?
+   → If NO → npm install not done
+
+4. VERIFY API KEY SET
+   → In cPanel → Setup Node.js App
+   → Click your app
+   → Scroll to Environment Variables
+   → Is ANTHROPIC_API_KEY there?
+
+═══════════════════════════════════════════════════════════════════════════════
+
+WHAT TO DO NOW:
+
+Tell me:
+1. What does Status show in cPanel? (Running/Error/Stopped)
+2. Any error messages in View Logs? (copy/paste them)
+3. Is node_modules folder present? (YES/NO)
+4. Is ANTHROPIC_API_KEY set? (YES/NO)
+
+Then I'll fix it!

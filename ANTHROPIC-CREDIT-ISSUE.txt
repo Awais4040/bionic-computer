@@ -1,0 +1,70 @@
+⚠️ ANTHROPIC CREDIT BALANCE TOO LOW
+
+═══════════════════════════════════════════════════════════════════════════════
+
+ERROR: "Your credit balance is too low to access the Anthropic API"
+
+REASON: You've used up the free trial credits or don't have any credits
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ SOLUTIONS:
+
+OPTION 1: ADD PAYMENT METHOD (RECOMMENDED)
+────────────────────────────────────────
+
+1. Go to: https://console.anthropic.com/account/billing/overview
+2. Click "Plans & Billing"
+3. Add payment method (credit card)
+4. Choose plan:
+   • Pay-as-you-go (starts at $5)
+   • Free trial ($5-10 initial credits)
+5. After adding payment, you can use API immediately
+6. Cost: ~$0.001-0.005 per chat
+
+OPTION 2: WAIT FOR MONTHLY RESET
+────────────────────────────────
+
+If you had free trial credits:
+• They expire after 3 months
+• Or when you use them up
+• Can't reuse trial
+• Need to add payment method
+
+OPTION 3: CHECK YOUR ACCOUNT STATUS
+──────────────────────────────────
+
+1. Go to: https://console.anthropic.com/account/billing/overview
+2. Check "Account balance"
+3. Look at "Usage this month"
+4. See remaining credits
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🚀 QUICK FIX (2 MINUTES):
+
+1. Visit: https://console.anthropic.com/account/billing/overview
+2. Click "Add payment method"
+3. Enter credit card details
+4. Click "Save"
+5. Your chatbot will work immediately!
+
+═══════════════════════════════════════════════════════════════════════════════
+
+💰 COST ESTIMATE:
+
+With payment method added:
+• Light usage (10 chats/day): $1-2/month
+• Medium usage (50 chats/day): $5-10/month
+• Heavy usage (200+ chats/day): $20-50/month
+
+Very affordable for customer support!
+
+═══════════════════════════════════════════════════════════════════════════════
+
+YOUR NEXT STEP:
+
+Go to Anthropic billing and add a payment method.
+That's it! Your chatbot will work right after.
+
+═══════════════════════════════════════════════════════════════════════════════
