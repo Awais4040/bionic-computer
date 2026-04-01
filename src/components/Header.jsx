@@ -21,9 +21,9 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <div className="text-2xl font-bold text-primary">
+          <a href="#" className="text-2xl font-bold text-primary hover:opacity-80 transition">
             Bionic<span className="text-secondary">Computer</span>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
