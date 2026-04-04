@@ -7,7 +7,6 @@ import LeadMagnet from '@/components/LeadMagnet';
 import ServiceBundles from '@/components/ServiceBundles';
 import GoogleReviews from '@/components/GoogleReviews';
 import About from '@/components/About';
-import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -23,7 +22,6 @@ export default function Home() {
       <ServiceBundles />
       <GoogleReviews />
       <About />
-      <Testimonials />
       <FAQ />
       <Contact />
       <Footer />
