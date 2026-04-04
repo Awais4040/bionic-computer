@@ -29,36 +29,58 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right - Hero Image */}
+          {/* Right - Server Illustration */}
           <div className="hidden md:block">
             <div className="relative">
-              {/* Main image container */}
+              {/* Main server container */}
               <div className="bg-white bg-opacity-10 rounded-2xl p-8 backdrop-blur-sm overflow-hidden">
                 <svg 
-                  viewBox="0 0 400 400" 
+                  viewBox="0 0 400 450" 
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-full h-auto animate-pulse"
                 >
-                  {/* Computer/Monitor illustration */}
-                  <rect x="50" y="80" width="300" height="200" fill="#ffffff" fillOpacity="0.1" rx="20" stroke="#ffffff" strokeWidth="2"/>
+                  {/* Rack */}
+                  <rect x="80" y="80" width="240" height="280" fill="#ffffff" fillOpacity="0.08" rx="15" stroke="#ffffff" strokeWidth="2"/>
                   
-                  {/* Screen display lines */}
-                  <rect x="70" y="100" width="260" height="160" fill="none" stroke="#FF6B35" strokeWidth="2" rx="10"/>
-                  <line x1="80" y1="120" x2="320" y2="120" stroke="#ffffff" strokeWidth="1" opacity="0.5"/>
-                  <line x1="80" y1="140" x2="320" y2="140" stroke="#ffffff" strokeWidth="1" opacity="0.5"/>
-                  <line x1="80" y1="160" x2="280" y2="160" stroke="#ffffff" strokeWidth="1" opacity="0.5"/>
-                  <line x1="80" y1="180" x2="300" y2="180" stroke="#ffffff" strokeWidth="1" opacity="0.5"/>
-                  <line x1="80" y1="200" x2="270" y2="200" stroke="#ffffff" strokeWidth="1" opacity="0.5"/>
-                  <line x1="80" y1="220" x2="290" y2="220" stroke="#ffffff" strokeWidth="1" opacity="0.5"/>
+                  {/* Server 1 */}
+                  <rect x="100" y="110" width="200" height="60" fill="#FF6B35" rx="5" stroke="#FFB84D" strokeWidth="2"/>
+                  <circle cx="120" cy="135" r="6" fill="#00FF00"/>
+                  <circle cx="140" cy="135" r="6" fill="#00FF00"/>
+                  <circle cx="160" cy="135" r="6" fill="#FFD700"/>
+                  <rect x="280" y="120" width="8" height="40" fill="#1a1a1a"/>
                   
-                  {/* Monitor base */}
-                  <rect x="160" y="280" width="80" height="15" fill="#ffffff" fillOpacity="0.2" rx="3"/>
-                  <rect x="140" y="295" width="120" height="8" fill="#ffffff" fillOpacity="0.1" rx="2"/>
+                  {/* Server 2 */}
+                  <rect x="100" y="190" width="200" height="60" fill="#FF6B35" rx="5" stroke="#FFB84D" strokeWidth="2"/>
+                  <circle cx="120" cy="215" r="6" fill="#00FF00"/>
+                  <circle cx="140" cy="215" r="6" fill="#00FF00"/>
+                  <circle cx="160" cy="215" r="6" fill="#FF4444"/>
+                  <rect x="280" y="200" width="8" height="40" fill="#1a1a1a"/>
                   
-                  {/* Decorative elements */}
-                  <circle cx="100" cy="320" r="5" fill="#FF6B35"/>
-                  <circle cx="200" cy="330" r="4" fill="#FF6B35"/>
-                  <circle cx="300" cy="325" r="5" fill="#FF6B35"/>
+                  {/* Server 3 */}
+                  <rect x="100" y="270" width="200" height="60" fill="#FF6B35" rx="5" stroke="#FFB84D" strokeWidth="2"/>
+                  <circle cx="120" cy="295" r="6" fill="#00FF00"/>
+                  <circle cx="140" cy="295" r="6" fill="#00FF00"/>
+                  <circle cx="160" cy="295" r="6" fill="#00FF00"/>
+                  <rect x="280" y="280" width="8" height="40" fill="#1a1a1a"/>
+                  
+                  {/* Power cables - Left side */}
+                  <path d="M 95 135 Q 50 135 45 180" stroke="#FF6B35" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                  <path d="M 95 215 Q 40 215 35 260" stroke="#FF6B35" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                  <path d="M 95 295 Q 50 295 45 340" stroke="#FF6B35" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                  
+                  {/* Network cables - Right side */}
+                  <path d="M 305 135 Q 350 135 360 100" stroke="#4169E1" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                  <path d="M 305 215 Q 355 215 365 180" stroke="#4169E1" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                  <path d="M 305 295 Q 350 295 360 330" stroke="#4169E1" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                  
+                  {/* Cable connectors */}
+                  <circle cx="360" cy="100" r="5" fill="#4169E1"/>
+                  <circle cx="365" cy="180" r="5" fill="#4169E1"/>
+                  <circle cx="360" cy="330" r="5" fill="#4169E1"/>
+                  
+                  {/* Decorative icons */}
+                  <text x="200" y="25" fontSize="20" textAnchor="middle" fill="#FFD700">⚙️</text>
+                  <text x="200" y="390" fontSize="20" textAnchor="middle" fill="#4169E1">🔌</text>
                 </svg>
               </div>
               
