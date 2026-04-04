@@ -14,10 +14,10 @@ export default function Hero() {
               🚀 Your One-Stop IT Solution
             </div>
             <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-              Comprehensive IT Solutions in Karachi
+              Your Complete Outsourced IT Department in Karachi
             </h1>
             <p className="text-lg text-blue-100 leading-relaxed">
-              For over a decade, Bionic Computer has been the trusted name in IT and hardware solutions in Pakistan. From advanced network setups to reliable hardware and software support, we ensure your business runs smoothly.
+              From secure network infrastructure to 24/7 hardware support, we handle your tech so you can focus on your business.
             </p>
             <div className="flex gap-4 pt-4">
               <button className="btn-primary inline-flex items-center gap-2">
