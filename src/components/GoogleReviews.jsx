@@ -162,7 +162,7 @@ export default function GoogleReviews() {
   );
 
   return (
-    <section className="py-20 md:py-32 bg-white">
+    <section id="reviews" className="py-20 md:py-32 bg-white">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
