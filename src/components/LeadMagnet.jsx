@@ -24,13 +24,8 @@ export default function LeadMagnet() {
       leads.push({ email, timestamp: new Date().toISOString() });
       localStorage.setItem('leads', JSON.stringify(leads));
       
-      // Trigger PDF download
-      const link = document.createElement('a');
-      link.href = '/IT-Audit-Checklist.pdf';
-      link.download = 'IT-Audit-Checklist.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Open OneDrive PDF download link in new tab
+      window.open('https://1drv.ms/b/c/181ca3a4e2597344/IQDnUPo7H3svSpDZsULOiu4WAVuzoibgUylNgduaV5H2rv4?download=1', '_blank');
       
       toast.success('Checklist downloading! Check your downloads folder.');
       setEmail('');
