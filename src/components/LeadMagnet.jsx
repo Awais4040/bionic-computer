@@ -19,12 +19,20 @@ export default function LeadMagnet() {
     setLoading(true);
     
     try {
-      // Store lead locally (you can integrate with email service later)
+      // Store lead locally
       const leads = JSON.parse(localStorage.getItem('leads') || '[]');
       leads.push({ email, timestamp: new Date().toISOString() });
       localStorage.setItem('leads', JSON.stringify(leads));
       
-      toast.success('Check your email for the IT Audit Checklist!');
+      // Trigger PDF download
+      const link = document.createElement('a');
+      link.href = '/IT-Audit-Checklist.pdf';
+      link.download = 'IT-Audit-Checklist.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      toast.success('Checklist downloading! Check your downloads folder.');
       setEmail('');
     } catch (error) {
       toast.error('Something went wrong. Please try again.');
