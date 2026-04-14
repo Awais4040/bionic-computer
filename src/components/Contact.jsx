@@ -78,7 +78,7 @@ export default function Contact() {
           <div className="bg-white p-8 rounded-xl text-center shadow-lg hover:shadow-xl transition">
             <FiMapPin className="text-4xl text-primary mx-auto mb-4" />
             <h3 className="font-bold text-dark mb-2">Location</h3>
-            <p className="text-gray-600">Karachi, Pakistan</p>
+            <p className="text-gray-600 text-sm">Office No: 102, FL 1 Block 5<br />Gulshan-e-Iqbal, Karachi, 73500, Pakistan</p>
           </div>
         </div>
 
@@ -164,8 +164,8 @@ export default function Contact() {
           {/* Office Info */}
           <div className="bg-white p-8 rounded-lg shadow-md text-center max-w-2xl mx-auto">
             <h4 className="text-xl font-bold text-dark mb-4">Office Information</h4>
-            <p className="text-gray-600 mb-2">
-              <strong>Location:</strong> Karachi, Sindh, Pakistan
+            <p className="text-gray-600 mb-4">
+              <strong>Location:</strong><br />Office No: 102, FL 1 Block 5<br />Gulshan-e-Iqbal, Karachi, 73500, Pakistan
             </p>
             <p className="text-gray-600 mb-6">
               <strong>Hours:</strong> Mon-Fri 9AM-7PM, Sat 10AM-6PM, Sun Closed
