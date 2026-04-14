@@ -78,9 +78,7 @@ export default function Hero() {
                   <circle cx="365" cy="180" r="5" fill="#4169E1"/>
                   <circle cx="360" cy="330" r="5" fill="#4169E1"/>
                   
-                  {/* Decorative icons */}
-                  <text x="200" y="25" fontSize="20" textAnchor="middle" fill="#FFD700">⚙️</text>
-                  <text x="200" y="390" fontSize="20" textAnchor="middle" fill="#4169E1">🔌</text>
+
                 </svg>
               </div>
               
