@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function ElevatedTestimonial() {
   return (
-    <section className="py-20 md:py-32 bg-white">
+    <section className="py-12 md:py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <div className="bg-gradient-to-r from-blue-50 to-blue-100 border-l-4 border-primary rounded-xl p-10 shadow-lg">

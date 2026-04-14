@@ -37,7 +37,7 @@ export default function LeadMagnet() {
   };
 
   return (
-    <section className="py-20 md:py-32 bg-gradient-to-r from-primary to-blue-700 text-white">
+    <section className="py-12 md:py-16 bg-gradient-to-r from-primary to-blue-700 text-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           {/* Heading */}

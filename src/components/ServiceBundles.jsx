@@ -33,7 +33,7 @@ export default function ServiceBundles() {
   ];
 
   return (
-    <section id="services" className="py-20 md:py-32 bg-light">
+    <section id="services" className="py-12 md:py-16 bg-light">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="section-title">Service Bundles for Business Growth</h2>

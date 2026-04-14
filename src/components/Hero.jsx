@@ -5,7 +5,7 @@ import { FiArrowRight } from 'react-icons/fi';
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-r from-primary via-blue-600 to-blue-700 text-white py-20 md:py-32">
+    <section className="bg-gradient-to-r from-primary via-blue-600 to-blue-700 text-white py-12 md:py-20">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}

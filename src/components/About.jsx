@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function About() {
   return (
-    <section id="about" className="py-20 md:py-32 bg-white">
+    <section id="about" className="py-12 md:py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left - Image */}
