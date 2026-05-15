@@ -2,6 +2,7 @@
 
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import Services from '@/components/Services';
 import ElevatedTestimonial from '@/components/ElevatedTestimonial';
 import LeadMagnet from '@/components/LeadMagnet';
 import ServiceBundles from '@/components/ServiceBundles';
@@ -17,6 +18,7 @@ export default function Home() {
     <>
       <Header />
       <Hero />
+      <Services />
       <ElevatedTestimonial />
       <LeadMagnet />
       <ServiceBundles />

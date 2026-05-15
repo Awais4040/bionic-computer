@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { FiFacebook, FiInstagram, FiLinkedin, FiArrowRight, FiGlobe } from 'react-icons/fi';
+import { FiFacebook, FiInstagram, FiArrowRight, FiGlobe } from 'react-icons/fi';
 
 export default function Footer() {
   return (
@@ -14,7 +14,7 @@ export default function Footer() {
               Bionic<span className="text-secondary">Computer</span>
             </h3>
             <p className="text-gray-400 leading-relaxed">
-              Leading IT and hardware solutions provider in Karachi. Trusted by 500+ clients for over a decade.
+              Trusted IT services and total computing solutions provider in Karachi since 1999.
             </p>
           </div>
 
@@ -22,10 +22,15 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {['Home', 'Services', 'About', 'Contact'].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-gray-400 hover:text-primary transition inline-flex items-center gap-1">
-                    <FiArrowRight className="text-sm" /> {link}
+              {[
+                { label: 'Home', href: '#' },
+                { label: 'Services', href: '#services' },
+                { label: 'About', href: '#about' },
+                { label: 'Contact', href: '#contact' },
+              ].map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="text-gray-400 hover:text-primary transition inline-flex items-center gap-1">
+                    <FiArrowRight className="text-sm" /> {link.label}
                   </a>
                 </li>
               ))}
@@ -36,7 +41,7 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-lg mb-4">Services</h4>
             <ul className="space-y-2">
-              {['Hardware Repair', 'Networking', 'Website Dev', 'IT Support'].map((service) => (
+              {['Hardware Repair', 'Networking', 'Cybersecurity', 'Maintenance'].map((service) => (
                 <li key={service}>
                   <a href="#services" className="text-gray-400 hover:text-primary transition inline-flex items-center gap-1">
                     <FiArrowRight className="text-sm" /> {service}
@@ -67,7 +72,7 @@ export default function Footer() {
 
         {/* Social Links */}
         <div className="border-t border-gray-700 pt-8 flex justify-between items-center flex-wrap gap-4">
-          <p className="text-gray-400">© 2025 Bionic Computer. All rights reserved.</p>
+          <p className="text-gray-400">© 2026 Bionic Computer. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="https://www.facebook.com/thebioniccomputer" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary text-2xl transition" title="Follow on Facebook">
               <FiFacebook />

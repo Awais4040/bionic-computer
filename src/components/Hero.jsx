@@ -11,18 +11,18 @@ export default function Hero() {
           {/* Left Content */}
           <div className="space-y-6">
             <div className="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm font-semibold">
-              🚀 Your One-Stop IT Solution
+              🚀 Trusted IT Partner Since 1999
             </div>
             <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-              Your Complete Outsourced IT Department in Karachi
+              Total Computing Solutions for Karachi Businesses
             </h1>
             <p className="text-lg text-blue-100 leading-relaxed">
-              From secure network infrastructure to 24/7 hardware support, we handle your tech so you can focus on your business.
+              From IT consulting and infrastructure management to networking, cybersecurity, cloud, hardware, software, and maintenance — we keep your business technology reliable.
             </p>
             <div className="flex gap-4 pt-4">
-              <button className="btn-primary inline-flex items-center gap-2">
+              <a href="#contact" className="btn-primary inline-flex items-center gap-2">
                 Get Started <FiArrowRight />
-              </button>
+              </a>
               <a href="tel:+923111444299" className="btn-secondary inline-flex items-center gap-2">
                 Call Now
               </a>

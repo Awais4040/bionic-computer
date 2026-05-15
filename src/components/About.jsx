@@ -52,8 +52,8 @@ export default function About() {
               
               {/* Experience badge */}
               <div className="absolute -bottom-6 -left-6 bg-white shadow-lg rounded-full p-6 text-center w-32 h-32 flex flex-col items-center justify-center">
-                <div className="text-3xl font-bold text-primary">5+</div>
-                <p className="text-sm font-semibold text-gray-600">Years of Excellence</p>
+                <div className="text-3xl font-bold text-primary">25+</div>
+                <p className="text-sm font-semibold text-gray-600">Years of Trust</p>
               </div>
             </div>
           </div>
@@ -65,7 +65,7 @@ export default function About() {
             </div>
             <h2 className="section-title">Who Are We?</h2>
             <p className="text-gray-600 text-lg leading-relaxed">
-              Welcome to Bionic Computer, Karachi's leading IT and hardware solutions provider. With over a decade of industry experience, we specialize in delivering top-notch Information Technology services including Hardware and software solutions tailored to your needs.
+              Welcome to Bionic Computer, a Karachi-based IT services and total computing solutions company incorporated in 1999. We deliver reliable IT consulting, infrastructure management, hardware and software support, networking, cybersecurity, cloud solutions, and maintenance services tailored to business needs.
             </p>
 
             <div className="space-y-4">
@@ -73,14 +73,14 @@ export default function About() {
                 <div className="text-2xl text-secondary">✓</div>
                 <div>
                   <h4 className="font-bold text-dark">Expertise and Experience</h4>
-                  <p className="text-gray-600">10+ years of proven IT solutions</p>
+                  <p className="text-gray-600">Serving businesses since 1999</p>
                 </div>
               </div>
               <div className="flex gap-4">
                 <div className="text-2xl text-secondary">✓</div>
                 <div>
-                  <h4 className="font-bold text-dark">24/7 Support</h4>
-                  <p className="text-gray-600">Always available when you need us</p>
+                  <h4 className="font-bold text-dark">Reliable Support</h4>
+                  <p className="text-gray-600">On-site and remote help when your business needs it</p>
                 </div>
               </div>
               <div className="flex gap-4">
@@ -93,13 +93,13 @@ export default function About() {
               <div className="flex gap-4">
                 <div className="text-2xl text-secondary">✓</div>
                 <div>
-                  <h4 className="font-bold text-dark">Quality Guarantee</h4>
-                  <p className="text-gray-600">Premium services with warranties</p>
+                  <h4 className="font-bold text-dark">Long-Term Partnership</h4>
+                  <p className="text-gray-600">Cost-effective, value-driven service focused on uptime</p>
                 </div>
               </div>
             </div>
 
-            <button className="btn-primary mt-4">Learn More</button>
+            <a href="#services" className="btn-primary mt-4 inline-block">Learn More</a>
           </div>
         </div>
       </div>

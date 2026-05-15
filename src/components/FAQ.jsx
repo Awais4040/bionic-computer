@@ -8,29 +8,29 @@ export default function FAQ() {
 
   const faqs = [
     {
-      question: 'Do you offer on-site repair services?',
+      question: 'Does Bionic Computer offer on-site IT support in Karachi?',
       answer:
-        'Yes, Bionic Computer offers on-site repair services for hardware issues. Our skilled technicians will come to your location to diagnose and fix the problem, ensuring minimal disruption to your workflow.',
+        'Yes. Bionic Computer provides on-site IT support, hardware repair, networking, cabling, maintenance, and troubleshooting services for businesses and offices in Karachi.',
     },
     {
-      question: 'How can I contact Bionic Computer for support?',
+      question: 'How can I contact Bionic Computer for IT support?',
       answer:
-        'You can reach us through our Contact Us page, call us at +92 311 1444299, or send an email to contact@bioniccomputer.com.pk. Our team is always ready to assist you.',
+        'You can call Bionic Computer at +92 311 1444299, email contact@bioniccomputer.com.pk, or send a message through the website contact form for IT support and consultation.',
     },
     {
-      question: 'Can I purchase hardware directly from Bionic Computer?',
+      question: 'Can I buy computer hardware and accessories from Bionic Computer?',
       answer:
-        'Absolutely! We offer a wide range of high-quality hardware products for purchase. Whether you need new laptops, PCs, or other hardware components, we have you covered.',
+        'Yes. Bionic Computer supplies computers, laptops, printers, accessories, parts, UPS/stabilizers, and branded products including Dell, HP, Lenovo, Microsoft, and networking products.',
     },
     {
-      question: 'Do you offer warranties on repair services?',
+      question: 'Does Bionic Computer provide annual maintenance agreements?',
       answer:
-        'Yes, we offer warranties on our repair services to ensure customer satisfaction. The duration and terms depend on the specific service provided.',
+        'Yes. Bionic Computer provides annual maintenance agreements, preventive maintenance, system upgrades, repair/replacement support, and scheduled IT support for businesses.',
     },
     {
-      question: 'Can I get a custom IT solution for my business?',
+      question: 'Can Bionic Computer design a custom IT solution for my business?',
       answer:
-        'Definitely! We tailor our IT solutions to meet your business needs. Contact us to discuss your requirements, and we will create a customized plan aligned with your goals.',
+        'Yes. Bionic Computer designs custom IT solutions for offices and enterprises, including infrastructure management, LAN/WAN networking, cybersecurity, cloud, Windows/Linux support, software development, and website development.',
     },
   ];
 
