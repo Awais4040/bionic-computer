@@ -2,37 +2,10 @@
 
 import React, { useState } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { faqs } from '@/lib/seoData';
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
-
-  const faqs = [
-    {
-      question: 'Does Bionic Computer offer on-site IT support in Karachi?',
-      answer:
-        'Yes. Bionic Computer provides on-site IT support, hardware repair, networking, cabling, maintenance, and troubleshooting services for businesses and offices in Karachi.',
-    },
-    {
-      question: 'How can I contact Bionic Computer for IT support?',
-      answer:
-        'You can call Bionic Computer at +92 311 1444299, email contact@bioniccomputer.com.pk, or send a message through the website contact form for IT support and consultation.',
-    },
-    {
-      question: 'Can I buy computer hardware and accessories from Bionic Computer?',
-      answer:
-        'Yes. Bionic Computer supplies computers, laptops, printers, accessories, parts, UPS/stabilizers, and branded products including Dell, HP, Lenovo, Microsoft, and networking products.',
-    },
-    {
-      question: 'Does Bionic Computer provide annual maintenance agreements?',
-      answer:
-        'Yes. Bionic Computer provides annual maintenance agreements, preventive maintenance, system upgrades, repair/replacement support, and scheduled IT support for businesses.',
-    },
-    {
-      question: 'Can Bionic Computer design a custom IT solution for my business?',
-      answer:
-        'Yes. Bionic Computer designs custom IT solutions for offices and enterprises, including infrastructure management, LAN/WAN networking, cybersecurity, cloud, Windows/Linux support, software development, and website development.',
-    },
-  ];
 
   return (
     <section id="faq" className="py-12 md:py-16 bg-white">

@@ -1,19 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FiMenu, FiX, FiPhone, FiMail } from 'react-icons/fi';
-import Link from 'next/link';
+import { FiMenu, FiX, FiPhone } from 'react-icons/fi';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { label: 'Home', href: '#' },
-    { label: 'Services', href: '#services' },
-    { label: 'About', href: '#about' },
-    { label: 'Reviews', href: '#reviews' },
-    { label: 'FAQ', href: '#faq' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: '/' },
+    { label: 'Services', href: '/#services' },
+    { label: 'About', href: '/#about' },
+    { label: 'Reviews', href: '/#reviews' },
+    { label: 'FAQ', href: '/#faq' },
+    { label: 'Contact', href: '/#contact' },
   ];
 
   return (
@@ -21,7 +20,7 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <a href="#" className="text-2xl font-bold text-primary hover:opacity-80 transition">
+          <a href="/" className="text-2xl font-bold text-primary hover:opacity-80 transition">
             Bionic<span className="text-secondary">Computer</span>
           </a>
 

@@ -23,10 +23,10 @@ export default function Footer() {
             <h4 className="font-bold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2">
               {[
-                { label: 'Home', href: '#' },
-                { label: 'Services', href: '#services' },
-                { label: 'About', href: '#about' },
-                { label: 'Contact', href: '#contact' },
+                { label: 'Home', href: '/' },
+                { label: 'Services', href: '/#services' },
+                { label: 'About', href: '/#about' },
+                { label: 'Contact', href: '/#contact' },
               ].map((link) => (
                 <li key={link.label}>
                   <a href={link.href} className="text-gray-400 hover:text-primary transition inline-flex items-center gap-1">
@@ -41,10 +41,15 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-lg mb-4">Services</h4>
             <ul className="space-y-2">
-              {['Hardware Repair', 'Networking', 'Cybersecurity', 'Maintenance'].map((service) => (
-                <li key={service}>
-                  <a href="#services" className="text-gray-400 hover:text-primary transition inline-flex items-center gap-1">
-                    <FiArrowRight className="text-sm" /> {service}
+              {[
+                { label: 'Computer Repair', href: '/services/computer-repair-karachi' },
+                { label: 'Networking', href: '/services/network-support-karachi' },
+                { label: 'Cybersecurity', href: '/services/cybersecurity-backup-karachi' },
+                { label: 'Maintenance', href: '/services/annual-maintenance-contract-karachi' },
+              ].map((service) => (
+                <li key={service.label}>
+                  <a href={service.href} className="text-gray-400 hover:text-primary transition inline-flex items-center gap-1">
+                    <FiArrowRight className="text-sm" /> {service.label}
                   </a>
                 </li>
               ))}
