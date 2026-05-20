@@ -160,6 +160,98 @@ export function serviceJsonLd(service) {
   };
 }
 
+export function servicesIndexJsonLd() {
+  const pageUrl = `${siteUrl}/services`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': `${pageUrl}#webpage`,
+        name: 'Bionic Computer Services',
+        url: pageUrl,
+        description:
+          'A complete list of Bionic Computer IT support, repair, networking, maintenance, cybersecurity, software, and website development services in Karachi.',
+        isPartOf: { '@id': `${siteUrl}/#website` },
+        about: { '@id': `${siteUrl}/#localbusiness` },
+      },
+      {
+        '@type': 'ItemList',
+        '@id': `${pageUrl}#service-list`,
+        name: 'Bionic Computer service pages',
+        itemListElement: services.map((service, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          url: `${siteUrl}/services/${service.slug}`,
+          name: service.name,
+          description: service.description,
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${pageUrl}#breadcrumbs`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: siteUrl,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Services',
+            item: pageUrl,
+          },
+        ],
+      },
+    ],
+  };
+}
+
+export function faqPageJsonLd() {
+  const pageUrl = `${siteUrl}/faq`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'FAQPage',
+        '@id': `${pageUrl}#faq`,
+        name: 'Bionic Computer Frequently Asked Questions',
+        url: pageUrl,
+        mainEntity: faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer,
+          },
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${pageUrl}#breadcrumbs`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: siteUrl,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'FAQ',
+            item: pageUrl,
+          },
+        ],
+      },
+    ],
+  };
+}
+
 export default function SeoJsonLd({ data }) {
   return (
     <script
