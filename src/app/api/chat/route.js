@@ -1,6 +1,16 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-const client = new Anthropic();
+let anthropicClient;
+
+function getAnthropicClient() {
+  if (!anthropicClient) {
+    anthropicClient = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY,
+    });
+  }
+
+  return anthropicClient;
+}
 
 const systemPrompt = `You are Bionic Computer's professional AI support agent. You are helpful, friendly, and knowledgeable about IT solutions.
 
@@ -44,6 +54,13 @@ If customer asks to book appointment, inform them you'll help collect their info
 
 export async function POST(request) {
   try {
+    if (!process.env.ANTHROPIC_API_KEY) {
+      return Response.json(
+        { error: "Chat is not configured" },
+        { status: 503 }
+      );
+    }
+
     const { message, conversationHistory } = await request.json();
 
     if (!message) {
@@ -54,15 +71,19 @@ export async function POST(request) {
     }
 
     // Build messages array with history
+    const history = Array.isArray(conversationHistory)
+      ? conversationHistory
+      : [];
+
     const messages = [
-      ...conversationHistory.map((msg) => ({
+      ...history.map((msg) => ({
         role: msg.sender === "user" ? "user" : "assistant",
         content: msg.text,
       })),
       { role: "user", content: message },
     ];
 
-    const response = await client.messages.create({
+    const response = await getAnthropicClient().messages.create({
       model: "claude-3-5-sonnet-20241022",
       max_tokens: 1024,
       system: systemPrompt,
@@ -81,7 +102,6 @@ export async function POST(request) {
     return Response.json(
       {
         error: "Failed to get response",
-        details: error.message,
       },
       { status: 500 }
     );

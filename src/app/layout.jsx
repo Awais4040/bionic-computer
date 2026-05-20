@@ -2,16 +2,19 @@ import './globals.css';
 import ClientProviders from '@/components/ClientProviders';
 
 export const metadata = {
+  metadataBase: new URL('https://bioniccomputer.com.pk'),
   title: 'Bionic Computer - Total IT Solutions in Karachi | Support, Networking & Hardware',
   description: 'Bionic Computer is a trusted IT services and total computing solutions company in Karachi, providing IT support, infrastructure management, networking, cybersecurity, cloud, hardware, software, and maintenance services since 1999.',
   keywords: 'IT solutions Karachi, IT support Karachi, hardware repair, network setup, cybersecurity Karachi, cloud solutions, annual maintenance agreement, computer repair, laptop repair, structured cabling, Windows Linux support, website development',
   authors: [{ name: 'Bionic Computer' }],
   creator: 'Bionic Computer',
   publisher: 'Bionic Computer',
-  robots: 'index, follow',
-  canonical: 'https://bioniccomputer.com.pk',
+  robots: {
+    index: true,
+    follow: true,
+  },
   alternates: {
-    canonical: 'https://bioniccomputer.com.pk',
+    canonical: '/',
   },
   openGraph: {
     type: 'website',
@@ -42,16 +45,14 @@ export const viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
+  themeColor: '#0052CC',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
-        <meta name="theme-color" content="#0052CC" />
         <meta name="msapplication-TileColor" content="#0052CC" />
         
         {/* Preconnect to external resources */}
