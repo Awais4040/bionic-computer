@@ -1,19 +1,69 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
-import { FiSend, FiX, FiMessageCircle, FiLoader } from 'react-icons/fi';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  FiCalendar,
+  FiCheckCircle,
+  FiClock,
+  FiMail,
+  FiMessageCircle,
+  FiPhone,
+  FiSend,
+  FiTool,
+  FiUser,
+  FiX,
+} from 'react-icons/fi';
 import toast from 'react-hot-toast';
+
+const BUSINESS_PHONE = '+923111444299';
+const DISPLAY_PHONE = '+92 311 1444299';
+const BUSINESS_EMAIL = 'contact@bioniccomputer.com.pk';
+
+const initialMessage = {
+  id: 1,
+  text: "Hi, I'm Bionic Computer's support assistant. Tell me what's happening with your computer, network, printer, server, or office IT setup and I'll guide you to the right next step.",
+  sender: 'bot',
+  timestamp: new Date(),
+};
+
+const quickPrompts = [
+  'My computer is slow',
+  'I need office network support',
+  'Book a technician visit',
+  'Tell me about annual maintenance',
+];
+
+const services = [
+  'Computer or laptop repair',
+  'Printer or accessories support',
+  'Network setup or cabling',
+  'Windows/Linux/software support',
+  'Cybersecurity or backup help',
+  'Annual maintenance agreement',
+  'Website development',
+  'Other IT support',
+];
+
+function formatLeadMessage(bookingData) {
+  return [
+    'New service request from Bionic Computer website',
+    '',
+    `Name: ${bookingData.name}`,
+    `Phone/WhatsApp: ${bookingData.phone}`,
+    bookingData.email ? `Email: ${bookingData.email}` : null,
+    `Service: ${bookingData.service}`,
+    bookingData.area ? `Area/Location: ${bookingData.area}` : null,
+    bookingData.date ? `Preferred date: ${bookingData.date}` : null,
+    bookingData.time ? `Preferred time: ${bookingData.time}` : null,
+    bookingData.issue ? `Issue: ${bookingData.issue}` : null,
+  ]
+    .filter(Boolean)
+    .join('\n');
+}
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      text: 'Hi! 👋 I\'m Bionic Computer\'s AI Support Agent. I can help you troubleshoot technical issues, answer questions about our services, or book an appointment for professional service.\n\nWhat can I help you with today?',
-      sender: 'bot',
-      timestamp: new Date()
-    }
-  ]);
+  const [messages, setMessages] = useState([initialMessage]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
@@ -22,31 +72,46 @@ export default function Chatbot() {
     email: '',
     phone: '',
     service: '',
+    area: '',
     date: '',
     time: '',
-    issue: ''
+    issue: '',
   });
   const messagesEndRef = useRef(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const canSendLead = useMemo(
+    () => bookingData.name.trim() && bookingData.phone.trim() && bookingData.service,
+    [bookingData.name, bookingData.phone, bookingData.service]
+  );
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, loading]);
 
-  const handleSendMessage = async () => {
-    if (!input.trim() || loading) return;
+  const addMessage = (text, sender = 'bot') => {
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: Date.now() + Math.random(),
+        text,
+        sender,
+        timestamp: new Date(),
+      },
+    ]);
+  };
+
+  const sendMessage = async (messageText = input) => {
+    const trimmed = messageText.trim();
+    if (!trimmed || loading) return;
 
     const userMessage = {
-      id: messages.length + 1,
-      text: input,
+      id: Date.now(),
+      text: trimmed,
       sender: 'user',
-      timestamp: new Date()
+      timestamp: new Date(),
     };
 
-    setMessages(prev => [...prev, userMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setLoading(true);
 
@@ -57,290 +122,308 @@ export default function Chatbot() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: input,
+          message: trimmed,
           conversationHistory: messages,
         }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to get response');
+        throw new Error('Chat request failed');
       }
 
       const data = await response.json();
-      
-      const botMessage = {
-        id: messages.length + 2,
-        text: data.response,
-        sender: 'bot',
-        timestamp: new Date()
-      };
+      addMessage(data.response || 'I can help with that. Please share a few more details.');
 
-      setMessages(prev => [...prev, botMessage]);
-
-      // Check if AI suggests booking appointment
-      if (data.response.toLowerCase().includes('appointment') || 
-          data.response.toLowerCase().includes('book')) {
-        setTimeout(() => {
-          toast('Would you like to book an appointment?', {
-            icon: '📅'
-          });
-        }, 500);
+      if (data.shouldShowBooking) {
+        setTimeout(() => setShowBooking(true), 600);
       }
     } catch (error) {
-      console.error('Error:', error);
-      const errorMessage = {
-        id: messages.length + 2,
-        text: `I apologize for the technical difficulty. Please try again or contact us directly:\n\n📞 Phone: +92 311 1444299\n📧 Email: contact@bioniccomputer.com.pk`,
-        sender: 'bot',
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, errorMessage]);
-      toast.error('Failed to get response. Please try again.');
+      console.error('Chatbot error:', error);
+      addMessage(
+        `I could not connect to the support assistant right now. You can still reach Bionic Computer directly:\n\nPhone: ${DISPLAY_PHONE}\nEmail: ${BUSINESS_EMAIL}`
+      );
+      toast.error('Chat is temporarily unavailable.');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleBookAppointment = async (e) => {
-    e.preventDefault();
+  const handleBookingSubmit = (event) => {
+    event.preventDefault();
 
-    if (!bookingData.name || !bookingData.phone || !bookingData.service) {
-      toast.error('Please fill all required fields');
+    if (!canSendLead) {
+      toast.error('Please add your name, phone number, and service.');
       return;
     }
 
-    try {
-      setLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      const bookingMessage = {
-        id: messages.length + 1,
-        text: `✅ Appointment Request Received!\n\nThank you for booking with us!\n\n👤 Name: ${bookingData.name}\n📞 Phone: ${bookingData.phone}\n🔧 Service: ${bookingData.service}\n${bookingData.date ? `📅 Preferred Date: ${bookingData.date}` : ''}\n${bookingData.time ? `⏰ Preferred Time: ${bookingData.time}` : ''}\n${bookingData.issue ? `📝 Issue: ${bookingData.issue}` : ''}\n\nWe'll confirm your appointment within the next 2 hours on WhatsApp or call.\n\nThank you!`,
-        sender: 'bot',
-        timestamp: new Date()
-      };
+    const leadMessage = formatLeadMessage(bookingData);
+    const whatsappUrl = `https://wa.me/${BUSINESS_PHONE.replace('+', '')}?text=${encodeURIComponent(leadMessage)}`;
 
-      setMessages(prev => [...prev, bookingMessage]);
-      setShowBooking(false);
-      setBookingData({
-        name: '',
-        email: '',
-        phone: '',
-        service: '',
-        date: '',
-        time: '',
-        issue: ''
-      });
-      
-      toast.success('Appointment request received! We\'ll contact you soon.');
-    } catch (error) {
-      toast.error('Failed to book appointment. Please try again.');
-    } finally {
-      setLoading(false);
-    }
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+    addMessage(
+      `Your request is ready to send on WhatsApp.\n\nName: ${bookingData.name}\nService: ${bookingData.service}\nPhone: ${bookingData.phone}\n\nBionic Computer will confirm by call or WhatsApp after receiving it. If WhatsApp does not open, call ${DISPLAY_PHONE} or email ${BUSINESS_EMAIL}.`,
+      'bot'
+    );
+
+    setShowBooking(false);
+    setBookingData({
+      name: '',
+      email: '',
+      phone: '',
+      service: '',
+      area: '',
+      date: '',
+      time: '',
+      issue: '',
+    });
+    toast.success('Opening WhatsApp with your service request.');
+  };
+
+  const updateBooking = (field, value) => {
+    setBookingData((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
     <>
-      {/* Chatbot Button */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-lg hover:shadow-xl transition z-40 animate-bounce"
-          title="Open AI Support Chat"
+          className="fixed bottom-6 right-6 z-40 rounded-full bg-primary p-4 text-white shadow-lg transition hover:bg-blue-700 hover:shadow-xl"
+          title="Open support chat"
+          aria-label="Open support chat"
         >
           <FiMessageCircle size={24} />
         </button>
       )}
 
-      {/* Chatbot Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 h-[600px] bg-white rounded-2xl shadow-2xl flex flex-col z-50 border-2 border-primary">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-primary to-blue-700 text-white p-4 rounded-t-2xl flex justify-between items-center">
-            <div>
-              <h3 className="font-bold text-lg">🤖 Bionic AI Support</h3>
-              <p className="text-sm text-blue-100">Intelligent Support Agent</p>
+        <div className="fixed bottom-4 right-4 z-50 flex h-[620px] w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-hidden rounded-xl border border-blue-200 bg-white shadow-2xl sm:bottom-6 sm:right-6">
+          <div className="flex items-center justify-between bg-primary px-4 py-4 text-white">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <FiTool className="shrink-0" />
+                <h3 className="truncate text-lg font-bold">Bionic Support Agent</h3>
+              </div>
+              <p className="text-sm text-blue-100">IT support, repairs, networking, and service booking</p>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white hover:bg-blue-700 p-1 rounded transition"
+              className="rounded p-2 transition hover:bg-blue-700"
+              aria-label="Close support chat"
             >
               <FiX size={20} />
             </button>
           </div>
 
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+          <div className="border-b border-gray-200 bg-blue-50 px-4 py-3 text-sm text-gray-700">
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
+              <a href={`tel:${BUSINESS_PHONE}`} className="inline-flex items-center gap-1 font-medium text-primary">
+                <FiPhone /> {DISPLAY_PHONE}
+              </a>
+              <span className="inline-flex items-center gap-1">
+                <FiClock /> Mon-Sat support
+              </span>
+            </div>
+          </div>
+
+          <div className="flex-1 space-y-4 overflow-y-auto bg-gray-50 p-4">
             {messages.map((message) => (
               <div
                 key={message.id}
                 className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-xs px-4 py-3 rounded-lg whitespace-pre-wrap text-sm leading-relaxed ${
+                  className={`max-w-[82%] whitespace-pre-wrap rounded-lg px-4 py-3 text-sm leading-relaxed shadow-sm ${
                     message.sender === 'user'
-                      ? 'bg-primary text-white rounded-br-none shadow-md'
-                      : 'bg-white text-gray-800 rounded-bl-none border border-gray-200 shadow-sm'
+                      ? 'rounded-br-none bg-primary text-white'
+                      : 'rounded-bl-none border border-gray-200 bg-white text-gray-800'
                   }`}
                 >
                   {message.text}
                 </div>
               </div>
             ))}
+
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-white px-4 py-3 rounded-lg rounded-bl-none border border-gray-200 flex items-center gap-2">
-                  <FiLoader className="animate-spin text-primary" size={16} />
-                  <span className="text-sm text-gray-600">AI Agent is thinking...</span>
+                <div className="rounded-lg rounded-bl-none border border-gray-200 bg-white px-4 py-3 text-sm text-gray-600 shadow-sm">
+                  Reviewing your issue...
                 </div>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Booking Form Modal */}
           {showBooking && (
-            <div className="absolute inset-0 bg-black bg-opacity-50 rounded-2xl flex items-center justify-center z-50">
-              <form 
-                onSubmit={handleBookAppointment}
-                className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full mx-4 space-y-3 max-h-96 overflow-y-auto"
+            <div className="absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+              <form
+                onSubmit={handleBookingSubmit}
+                className="max-h-full w-full max-w-sm space-y-3 overflow-y-auto rounded-lg bg-white p-5 shadow-xl"
               >
-                <h4 className="font-bold text-lg text-primary">📅 Book Appointment</h4>
-                
-                <input
-                  type="text"
-                  placeholder="Your Name *"
-                  value={bookingData.name}
-                  onChange={(e) => setBookingData({...bookingData, name: e.target.value})}
-                  className="w-full px-3 py-2 border rounded text-sm focus:outline-none focus:border-primary"
-                  required
-                />
-                
-                <input
-                  type="email"
-                  placeholder="Email (optional)"
-                  value={bookingData.email}
-                  onChange={(e) => setBookingData({...bookingData, email: e.target.value})}
-                  className="w-full px-3 py-2 border rounded text-sm focus:outline-none focus:border-primary"
-                />
-                
-                <input
-                  type="tel"
-                  placeholder="Phone Number *"
-                  value={bookingData.phone}
-                  onChange={(e) => setBookingData({...bookingData, phone: e.target.value})}
-                  className="w-full px-3 py-2 border rounded text-sm focus:outline-none focus:border-primary"
-                  required
-                />
-                
-                <select
-                  value={bookingData.service}
-                  onChange={(e) => setBookingData({...bookingData, service: e.target.value})}
-                  className="w-full px-3 py-2 border rounded text-sm focus:outline-none focus:border-primary"
-                  required
-                >
-                  <option value="">Select Service *</option>
-                  <option value="Hardware Repair">Hardware Repair</option>
-                  <option value="Software Support">Software Support</option>
-                  <option value="Network Setup">Network Setup</option>
-                  <option value="Website Development">Website Development</option>
-                  <option value="24/7 Support">24/7 Support</option>
-                  <option value="Other">Other</option>
-                </select>
-                
-                <input
-                  type="date"
-                  value={bookingData.date}
-                  onChange={(e) => setBookingData({...bookingData, date: e.target.value})}
-                  className="w-full px-3 py-2 border rounded text-sm focus:outline-none focus:border-primary"
-                />
-                
-                <input
-                  type="time"
-                  value={bookingData.time}
-                  onChange={(e) => setBookingData({...bookingData, time: e.target.value})}
-                  className="w-full px-3 py-2 border rounded text-sm focus:outline-none focus:border-primary"
-                />
-                
-                <textarea
-                  placeholder="Describe your issue"
-                  value={bookingData.issue}
-                  onChange={(e) => setBookingData({...bookingData, issue: e.target.value})}
-                  rows="2"
-                  className="w-full px-3 py-2 border rounded text-sm resize-none focus:outline-none focus:border-primary"
-                />
-                
-                <div className="flex gap-2">
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="flex-1 bg-primary text-white py-2 rounded font-semibold hover:bg-blue-700 transition text-sm disabled:opacity-50"
-                  >
-                    {loading ? 'Booking...' : 'Confirm Booking'}
-                  </button>
+                <div className="flex items-center justify-between gap-3">
+                  <h4 className="flex items-center gap-2 text-lg font-bold text-primary">
+                    <FiCalendar /> Service Request
+                  </h4>
                   <button
                     type="button"
                     onClick={() => setShowBooking(false)}
-                    className="flex-1 bg-gray-300 text-gray-800 py-2 rounded font-semibold hover:bg-gray-400 transition text-sm"
+                    className="rounded p-1 text-gray-500 hover:bg-gray-100"
+                    aria-label="Close service request"
                   >
-                    Cancel
+                    <FiX />
                   </button>
                 </div>
+
+                <label className="block text-xs font-semibold text-gray-600">
+                  Name *
+                  <div className="mt-1 flex items-center gap-2 rounded border px-3 py-2 focus-within:border-primary">
+                    <FiUser className="text-gray-400" />
+                    <input
+                      type="text"
+                      value={bookingData.name}
+                      onChange={(event) => updateBooking('name', event.target.value)}
+                      className="w-full outline-none"
+                      required
+                    />
+                  </div>
+                </label>
+
+                <label className="block text-xs font-semibold text-gray-600">
+                  Phone or WhatsApp *
+                  <div className="mt-1 flex items-center gap-2 rounded border px-3 py-2 focus-within:border-primary">
+                    <FiPhone className="text-gray-400" />
+                    <input
+                      type="tel"
+                      value={bookingData.phone}
+                      onChange={(event) => updateBooking('phone', event.target.value)}
+                      className="w-full outline-none"
+                      required
+                    />
+                  </div>
+                </label>
+
+                <label className="block text-xs font-semibold text-gray-600">
+                  Email
+                  <div className="mt-1 flex items-center gap-2 rounded border px-3 py-2 focus-within:border-primary">
+                    <FiMail className="text-gray-400" />
+                    <input
+                      type="email"
+                      value={bookingData.email}
+                      onChange={(event) => updateBooking('email', event.target.value)}
+                      className="w-full outline-none"
+                    />
+                  </div>
+                </label>
+
+                <label className="block text-xs font-semibold text-gray-600">
+                  Service *
+                  <select
+                    value={bookingData.service}
+                    onChange={(event) => updateBooking('service', event.target.value)}
+                    className="mt-1 w-full rounded border px-3 py-2 outline-none focus:border-primary"
+                    required
+                  >
+                    <option value="">Select a service</option>
+                    {services.map((service) => (
+                      <option key={service} value={service}>
+                        {service}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <label className="block text-xs font-semibold text-gray-600">
+                    Area
+                    <input
+                      type="text"
+                      value={bookingData.area}
+                      onChange={(event) => updateBooking('area', event.target.value)}
+                      className="mt-1 w-full rounded border px-3 py-2 outline-none focus:border-primary"
+                      placeholder="Karachi area"
+                    />
+                  </label>
+                  <label className="block text-xs font-semibold text-gray-600">
+                    Preferred time
+                    <input
+                      type="time"
+                      value={bookingData.time}
+                      onChange={(event) => updateBooking('time', event.target.value)}
+                      className="mt-1 w-full rounded border px-3 py-2 outline-none focus:border-primary"
+                    />
+                  </label>
+                </div>
+
+                <label className="block text-xs font-semibold text-gray-600">
+                  Preferred date
+                  <input
+                    type="date"
+                    value={bookingData.date}
+                    onChange={(event) => updateBooking('date', event.target.value)}
+                    className="mt-1 w-full rounded border px-3 py-2 outline-none focus:border-primary"
+                  />
+                </label>
+
+                <label className="block text-xs font-semibold text-gray-600">
+                  Issue details
+                  <textarea
+                    value={bookingData.issue}
+                    onChange={(event) => updateBooking('issue', event.target.value)}
+                    rows="3"
+                    className="mt-1 w-full resize-none rounded border px-3 py-2 outline-none focus:border-primary"
+                    placeholder="Example: office internet is down, laptop is not turning on"
+                  />
+                </label>
+
+                <button
+                  type="submit"
+                  className="flex w-full items-center justify-center gap-2 rounded bg-primary px-4 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50"
+                  disabled={!canSendLead}
+                >
+                  <FiCheckCircle /> Send on WhatsApp
+                </button>
               </form>
             </div>
           )}
 
-          {/* Input */}
-          <div className="border-t p-4 flex gap-2 bg-white rounded-b-2xl">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && !loading && handleSendMessage()}
-              placeholder="Ask me anything..."
-              disabled={loading}
-              className="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:border-primary text-sm disabled:bg-gray-100"
-            />
-            <button
-              onClick={() => {
-                if (input.toLowerCase().includes('book') || input.toLowerCase().includes('appointment')) {
-                  setShowBooking(true);
-                  setInput('');
-                } else {
-                  handleSendMessage();
-                }
-              }}
-              disabled={loading}
-              className="bg-primary text-white p-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
-            >
-              {loading ? <FiLoader className="animate-spin" size={18} /> : <FiSend size={18} />}
-            </button>
-          </div>
+          <div className="border-t bg-white p-4">
+            <div className="mb-3 flex flex-wrap gap-2">
+              {quickPrompts.map((prompt) => (
+                <button
+                  key={prompt}
+                  onClick={() => sendMessage(prompt)}
+                  disabled={loading}
+                  className="rounded-full border border-blue-200 px-3 py-1 text-xs font-medium text-primary transition hover:bg-blue-50 disabled:opacity-50"
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
 
-          {/* Quick Actions */}
-          <div className="px-4 pb-3 flex gap-2 flex-wrap">
-            <button
-              onClick={() => {
-                setInput('');
-                setShowBooking(true);
-              }}
-              className="text-xs bg-secondary text-white px-2 py-1 rounded hover:opacity-90 transition"
-            >
-              📅 Book Appointment
-            </button>
-            <button
-              onClick={() => setInput('What services do you provide?')}
-              className="text-xs bg-primary text-white px-2 py-1 rounded hover:opacity-90 transition"
-            >
-              Services
-            </button>
-            <button
-              onClick={() => setInput('My computer is running slow, what should I do?')}
-              className="text-xs bg-blue-500 text-white px-2 py-1 rounded hover:opacity-90 transition"
-            >
-              💻 Troubleshoot
-            </button>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={input}
+                onChange={(event) => setInput(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    sendMessage();
+                  }
+                }}
+                placeholder="Describe the issue..."
+                disabled={loading}
+                className="min-w-0 flex-1 rounded-lg border px-3 py-2 text-sm outline-none transition focus:border-primary disabled:bg-gray-100"
+              />
+              <button
+                onClick={() => sendMessage()}
+                disabled={loading || !input.trim()}
+                className="rounded-lg bg-primary p-3 text-white transition hover:bg-blue-700 disabled:opacity-50"
+                aria-label="Send message"
+              >
+                <FiSend size={18} />
+              </button>
+            </div>
           </div>
         </div>
       )}
