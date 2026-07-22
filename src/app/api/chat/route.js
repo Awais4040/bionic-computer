@@ -1,17 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-let anthropicClient;
-
-function getAnthropicClient() {
-  if (!anthropicClient) {
-    anthropicClient = new Anthropic({
-      apiKey: process.env.ANTHROPIC_API_KEY,
-    });
-  }
-
-  return anthropicClient;
-}
-
 const systemPrompt = `You are Bionic Computer's website support agent for customers in Karachi.
 
 ABOUT BIONIC COMPUTER:
@@ -72,11 +60,77 @@ function shouldOfferBooking(text) {
   return bookingSignals.some((signal) => value.includes(signal));
 }
 
+// Call Google Gemini API via REST
+async function callGemini(apiKey, message, conversationHistory) {
+  const history = Array.isArray(conversationHistory) ? conversationHistory.slice(-10) : [];
+  
+  const contents = [
+    ...history
+      .filter((msg) => msg && typeof msg.text === "string" && msg.text.trim())
+      .map((msg) => ({
+        role: msg.sender === "user" ? "user" : "model",
+        parts: [{ text: msg.text.slice(0, 1200) }],
+      })),
+    { role: "user", parts: [{ text: message }] },
+  ];
+
+  const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        system_instruction: {
+          parts: [{ text: systemPrompt }],
+        },
+        contents: contents,
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    const errorData = await response.text();
+    throw new Error(`Gemini API Error ${response.status}: ${errorData}`);
+  }
+
+  const data = await response.json();
+  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+  return text;
+}
+
+// Call Anthropic API fallback
+async function callAnthropic(apiKey, message, conversationHistory) {
+  const anthropic = new Anthropic({ apiKey });
+  const history = Array.isArray(conversationHistory) ? conversationHistory.slice(-10) : [];
+
+  const messages = [
+    ...history
+      .filter((msg) => msg && typeof msg.text === "string" && msg.text.trim())
+      .map((msg) => ({
+        role: msg.sender === "user" ? "user" : "assistant",
+        content: msg.text.slice(0, 1200),
+      })),
+    { role: "user", content: message },
+  ];
+
+  const response = await anthropic.messages.create({
+    model: "claude-3-5-sonnet-20241022",
+    max_tokens: 1024,
+    system: systemPrompt,
+    messages: messages,
+  });
+
+  return response.content[0].type === "text" ? response.content[0].text : "";
+}
+
 export async function POST(request) {
   try {
-    if (!process.env.ANTHROPIC_API_KEY) {
+    const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+    const anthropicKey = process.env.ANTHROPIC_API_KEY;
+
+    if (!geminiKey && !anthropicKey) {
       return Response.json(
-        { error: "Chat is not configured" },
+        { error: "Chat is not configured. Please set GEMINI_API_KEY or ANTHROPIC_API_KEY in environment variables." },
         { status: 503 }
       );
     }
@@ -90,30 +144,13 @@ export async function POST(request) {
       );
     }
 
-    // Build messages array with history
-    const history = Array.isArray(conversationHistory)
-      ? conversationHistory.slice(-10)
-      : [];
+    let aiResponse = "";
 
-    const messages = [
-      ...history
-        .filter((msg) => msg && typeof msg.text === "string" && msg.text.trim())
-        .map((msg) => ({
-          role: msg.sender === "user" ? "user" : "assistant",
-          content: msg.text.slice(0, 1200),
-        })),
-      { role: "user", content: message },
-    ];
-
-    const response = await getAnthropicClient().messages.create({
-      model: "claude-3-5-sonnet-20241022",
-      max_tokens: 1024,
-      system: systemPrompt,
-      messages: messages,
-    });
-
-    const aiResponse =
-      response.content[0].type === "text" ? response.content[0].text : "";
+    if (geminiKey) {
+      aiResponse = await callGemini(geminiKey, message, conversationHistory);
+    } else if (anthropicKey) {
+      aiResponse = await callAnthropic(anthropicKey, message, conversationHistory);
+    }
 
     return Response.json({
       response: aiResponse,
