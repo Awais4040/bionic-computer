@@ -1,105 +1,108 @@
 'use client';
 
 import React from 'react';
+import { FiCheckCircle, FiShield, FiAward, FiClock } from 'react-icons/fi';
 
 export default function About() {
   return (
-    <section id="about" className="py-12 md:py-16 bg-white">
+    <section id="about" className="py-20 md:py-28 bg-white relative">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left - Image */}
-          <div className="hidden md:block">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          {/* Left - Graphic / Illustration */}
+          <div className="lg:col-span-5 hidden lg:block">
             <div className="relative">
-              <div className="bg-gradient-to-br from-primary to-blue-700 rounded-2xl p-8 shadow-lg overflow-hidden">
-                <svg 
-                  viewBox="0 0 400 500" 
+              <div className="bg-gradient-to-br from-[#0B2545] via-[#133663] to-[#1E82BC] rounded-3xl p-8 shadow-2xl overflow-hidden border border-blue-100">
+                <svg
+                  viewBox="0 0 400 480"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-full h-auto"
+                  className="w-full h-auto drop-shadow-lg"
                 >
-                  {/* IT Professional illustration */}
-                  {/* Head */}
-                  <circle cx="200" cy="80" r="30" fill="#FFD4B3"/>
+                  <defs>
+                    <linearGradient id="aboutBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#48CAE4" />
+                      <stop offset="100%" stopColor="#1E82BC" />
+                    </linearGradient>
+                  </defs>
+
+                  {/* Tech Infrastructure Illustration */}
+                  <rect x="50" y="60" width="300" height="360" fill="#FFFFFF" fillOpacity="0.05" rx="20" stroke="#FFFFFF" strokeWidth="2" strokeOpacity="0.2" />
+
+                  {/* Shield Core */}
+                  <path d="M 200 110 L 290 150 V 250 C 290 320 200 360 200 360 C 200 360 110 320 110 250 V 150 Z" fill="url(#aboutBlueGrad)" fillOpacity="0.9" />
                   
-                  {/* Body - Torso */}
-                  <rect x="170" y="110" width="60" height="80" fill="#ffffff" rx="5"/>
-                  
-                  {/* Arms */}
-                  <rect x="100" y="130" width="70" height="20" fill="#FFD4B3" rx="10"/>
-                  <rect x="230" y="130" width="70" height="20" fill="#FFD4B3" rx="10"/>
-                  
-                  {/* Legs */}
-                  <rect x="180" y="190" width="18" height="80" fill="#333333" rx="5"/>
-                  <rect x="202" y="190" width="18" height="80" fill="#333333" rx="5"/>
-                  
-                  {/* Shoes */}
-                  <ellipse cx="189" cy="275" rx="15" ry="8" fill="#1a1a1a"/>
-                  <ellipse cx="211" cy="275" rx="15" ry="8" fill="#1a1a1a"/>
-                  
-                  {/* Laptop in hand */}
-                  <rect x="250" y="120" width="100" height="70" fill="#FF6B35" rx="8"/>
-                  <rect x="260" y="130" width="80" height="50" fill="#ffffff" rx="5"/>
-                  
-                  {/* Laptop display lines */}
-                  <line x1="270" y1="145" x2="330" y2="145" stroke="#1a1a1a" strokeWidth="1"/>
-                  <line x1="270" y1="160" x2="330" y2="160" stroke="#1a1a1a" strokeWidth="1"/>
-                  
-                  {/* Background elements */}
-                  <circle cx="80" cy="150" r="40" fill="#ffffff" fillOpacity="0.1"/>
-                  <circle cx="320" cy="400" r="50" fill="#ffffff" fillOpacity="0.1"/>
-                  <rect x="100" y="350" width="200" height="2" fill="#FF6B35" fillOpacity="0.3"/>
+                  {/* Inner Check mark inside Shield */}
+                  <path d="M 160 230 L 190 260 L 245 190" fill="none" stroke="#FFFFFF" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" />
+
+                  {/* Orbit Nodes */}
+                  <circle cx="90" cy="120" r="14" fill="#FFFFFF" fillOpacity="0.2" />
+                  <circle cx="310" cy="120" r="14" fill="#FFFFFF" fillOpacity="0.2" />
+                  <circle cx="310" cy="380" r="14" fill="#FFFFFF" fillOpacity="0.2" />
+                  <circle cx="90" cy="380" r="14" fill="#FFFFFF" fillOpacity="0.2" />
                 </svg>
               </div>
-              
+
               {/* Experience badge */}
-              <div className="absolute -bottom-6 -left-6 bg-white shadow-lg rounded-full p-6 text-center w-32 h-32 flex flex-col items-center justify-center">
-                <div className="text-3xl font-bold text-primary">25+</div>
-                <p className="text-sm font-semibold text-gray-600">Years of Trust</p>
+              <div className="absolute -bottom-6 -right-6 bg-white shadow-xl border border-blue-100 rounded-3xl p-6 text-center w-36 h-36 flex flex-col items-center justify-center">
+                <div className="text-3xl font-black text-[#1E82BC]">25+</div>
+                <p className="text-xs font-bold text-[#0B2545] mt-1">Years of Trust</p>
+                <p className="text-[10px] text-slate-500">Since 1999</p>
               </div>
             </div>
           </div>
 
           {/* Right - Content */}
-          <div className="space-y-6">
-            <div className="inline-block text-primary font-semibold text-sm">
+          <div className="lg:col-span-7 space-y-6">
+            <span className="text-[#1E82BC] bg-[#F0F7FF] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider inline-block">
               About Bionic Computer
-            </div>
-            <h2 className="section-title">Who Are We?</h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              Welcome to Bionic Computer, a Karachi-based IT services and total computing solutions company incorporated in 1999. We deliver reliable IT consulting, infrastructure management, hardware and software support, networking, cybersecurity, cloud solutions, and maintenance services tailored to business needs.
+            </span>
+            
+            <h2 className="section-title">
+              Complete Computer & IT Solutions Engineered for Reliability
+            </h2>
+            
+            <p className="text-slate-600 text-base md:text-lg leading-relaxed">
+              Welcome to **Bionic Computer**, a Karachi-based total computing solutions provider incorporated in 1999. Our motto — <span className="text-[#1E82BC] font-bold italic">"We Care Your System"</span> — guides everything we do. We deliver enterprise-grade IT consulting, hardware supply & repairs, structured cabling, cybersecurity, and managed IT maintenance.
             </p>
 
-            <div className="space-y-4">
-              <div className="flex gap-4">
-                <div className="text-2xl text-secondary">✓</div>
+            <div className="grid sm:grid-cols-2 gap-4 pt-2">
+              <div className="flex items-start gap-3 bg-[#F0F7FF] p-4 rounded-2xl border border-blue-100">
+                <FiAward className="text-2xl text-[#1E82BC] flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-dark">Expertise and Experience</h4>
-                  <p className="text-gray-600">Serving businesses since 1999</p>
+                  <h4 className="font-bold text-[#0B2545] text-sm">25+ Years Experience</h4>
+                  <p className="text-slate-600 text-xs mt-1">Established reputation serving businesses across Karachi & Pakistan.</p>
                 </div>
               </div>
-              <div className="flex gap-4">
-                <div className="text-2xl text-secondary">✓</div>
+
+              <div className="flex items-start gap-3 bg-[#F0F7FF] p-4 rounded-2xl border border-blue-100">
+                <FiClock className="text-2xl text-[#1E82BC] flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-dark">Reliable Support</h4>
-                  <p className="text-gray-600">On-site and remote help when your business needs it</p>
+                  <h4 className="font-bold text-[#0B2545] text-sm">Rapid On-Site Support</h4>
+                  <p className="text-slate-600 text-xs mt-1">Quick response time to minimize business downtime and revenue loss.</p>
                 </div>
               </div>
-              <div className="flex gap-4">
-                <div className="text-2xl text-secondary">✓</div>
+
+              <div className="flex items-start gap-3 bg-[#F0F7FF] p-4 rounded-2xl border border-blue-100">
+                <FiShield className="text-2xl text-[#1E82BC] flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-dark">Transparent Communication</h4>
-                  <p className="text-gray-600">Clear and honest business practices</p>
+                  <h4 className="font-bold text-[#0B2545] text-sm">Certified Engineers</h4>
+                  <p className="text-slate-600 text-xs mt-1">Expert technicians specializing in Windows, Linux, network & server hardware.</p>
                 </div>
               </div>
-              <div className="flex gap-4">
-                <div className="text-2xl text-secondary">✓</div>
+
+              <div className="flex items-start gap-3 bg-[#F0F7FF] p-4 rounded-2xl border border-blue-100">
+                <FiCheckCircle className="text-2xl text-[#1E82BC] flex-shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-dark">Long-Term Partnership</h4>
-                  <p className="text-gray-600">Cost-effective, value-driven service focused on uptime</p>
+                  <h4 className="font-bold text-[#0B2545] text-sm">Transparent Pricing</h4>
+                  <p className="text-slate-600 text-xs mt-1">Upfront diagnostics and honest recommendations without hidden charges.</p>
                 </div>
               </div>
             </div>
 
-            <a href="#services" className="btn-primary mt-4 inline-block">Learn More</a>
+            <div className="pt-4">
+              <a href="#services" className="btn-primary">
+                Explore Our Services
+              </a>
+            </div>
           </div>
         </div>
       </div>

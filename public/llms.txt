@@ -1,33 +1,20 @@
-# Bionic Computer
+# Bionic Computer — Total IT Solutions & Computer Support in Karachi
 
-> Bionic Computer provides IT support, computer and laptop repair, networking, structured cabling, cybersecurity guidance, cloud and infrastructure support, annual maintenance, Windows/Linux support, software support, and website development in Karachi, Pakistan.
+> Bionic Computer is a premier IT consulting, hardware repair, networking, cybersecurity, and managed IT services provider headquartered in Karachi, Pakistan. Incorporated in 1999, our tagline is "We Care Your System".
 
-## Business Facts
+## Core Services
+- **Computer Hardware & Repair**: Sales, upgrades, component replacement, diagnostics, laptop & desktop repairs, printer maintenance, UPS, and stabilizer support.
+- **Networking & Structured Cabling**: Secure LAN/WAN design, router/switch configuration, Cat6 structured cabling, and enterprise fiber setup.
+- **Cybersecurity & Data Protection**: Security audits, firewall installation, anti-malware, cloud backup, and risk reduction.
+- **Annual Maintenance Contracts (AMC)**: Preventive maintenance, scheduled checkups, 24/7 priority emergency IT support contracts.
+- **Cloud & Server Management**: Windows Server & Linux administration, virtualization, active directory, and cloud migration.
+- **Software & Web Development**: Custom business applications, responsive corporate websites, and portal development.
 
-- Website: https://bioniccomputer.com.pk
-- Phone/WhatsApp: +92 311 1444299
-- Email: contact@bioniccomputer.com.pk
-- Location: Office No: 102, FL 1 Block 5, Gulshan-e-Iqbal, Karachi, 73500, Pakistan
-- Service area: Karachi, Sindh, Pakistan
-- Established: 1999
-- Hours: Monday-Friday 9AM-7PM, Saturday 10AM-6PM
-
-## Key Pages
-
-- Home: https://bioniccomputer.com.pk
-- Services: https://bioniccomputer.com.pk/services
-- FAQ: https://bioniccomputer.com.pk/faq
-- Sitemap: https://bioniccomputer.com.pk/sitemap.xml
-
-## Services
-
-- Computer repair in Karachi: https://bioniccomputer.com.pk/services/computer-repair-karachi
-- Network support in Karachi: https://bioniccomputer.com.pk/services/network-support-karachi
-- Annual maintenance contract in Karachi: https://bioniccomputer.com.pk/services/annual-maintenance-contract-karachi
-- Cybersecurity and backup support in Karachi: https://bioniccomputer.com.pk/services/cybersecurity-backup-karachi
-- Windows and Linux support in Karachi: https://bioniccomputer.com.pk/services/windows-linux-support-karachi
-- Website development in Karachi: https://bioniccomputer.com.pk/services/website-development-karachi
-
-## Customer Help
-
-Customers can contact Bionic Computer by phone, WhatsApp, email, the website chat assistant, or the contact form. For urgent IT issues, customers should call or WhatsApp +92 311 1444299.
+## Contact Information
+- **Company Name**: Bionic Computer
+- **Tagline**: We Care Your System
+- **Phone**: +92 311 1444299
+- **Email**: contact@bioniccomputer.com.pk
+- **Address**: Office 102, FL 1 Block 5, Gulshan-e-Iqbal, Karachi, Pakistan
+- **Website**: https://bioniccomputer.com.pk
+- **Hours**: Monday – Saturday: 10:00 AM – 8:00 PM PST

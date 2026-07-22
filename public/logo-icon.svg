@@ -1,14 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120">
-  <!-- Logo Icon - Horizontal wrench with plus sign -->
-  <g>
-    <!-- Plus sign (left part) -->
-    <rect x="50" y="30" width="16" height="50" fill="#1E5BA8" rx="2"/>
-    <rect x="38" y="42" width="40" height="16" fill="#1E5BA8" rx="2"/>
-    
-    <!-- Wrench/Tool shape (right part) -->
-    <path d="M 95 65 Q 95 50 110 50 L 160 50 Q 175 50 175 65 L 175 75 Q 175 90 160 90 L 95 90 Q 90 90 90 85 Q 90 75 95 65 Z" fill="none" stroke="#1E5BA8" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-    
-    <!-- Inner curve detail -->
-    <path d="M 100 65 Q 100 60 105 60 L 155 60 Q 165 60 165 70" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 110" width="150" height="110">
+  <defs>
+    <linearGradient id="bionicBlueIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2892D7"/>
+      <stop offset="100%" stop-color="#1E82BC"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(8, 5)">
+    <!-- Top vertical stem -->
+    <rect x="34" y="5" width="22" height="60" fill="url(#bionicBlueIcon)" rx="3"/>
+    <!-- Cross horizontal beam -->
+    <rect x="0" y="24" width="48" height="14" fill="url(#bionicBlueIcon)" rx="3"/>
+    <!-- Outer loop of 'b' -->
+    <path d="M 34 50 L 110 50 A 24 24 0 0 1 134 74 L 134 74 A 24 24 0 0 1 110 98 L 58 98 A 24 24 0 0 1 34 74 Z" fill="none" stroke="url(#bionicBlueIcon)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 </svg>

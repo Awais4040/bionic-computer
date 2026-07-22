@@ -189,55 +189,55 @@ export default function Chatbot() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-40 rounded-full bg-primary p-4 text-white shadow-lg transition hover:bg-blue-700 hover:shadow-xl"
+          className="fixed bottom-6 right-6 z-40 rounded-full bg-[#1E82BC] p-4 text-white shadow-xl transition hover:bg-[#16699B] hover:shadow-2xl hover:scale-105 active:scale-95"
           title="Open support chat"
           aria-label="Open support chat"
         >
-          <FiMessageCircle size={24} />
+          <FiMessageCircle size={26} />
         </button>
       )}
 
       {isOpen && (
-        <div className="fixed bottom-4 right-4 z-50 flex h-[620px] w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-hidden rounded-xl border border-blue-200 bg-white shadow-2xl sm:bottom-6 sm:right-6">
-          <div className="flex items-center justify-between bg-primary px-4 py-4 text-white">
+        <div className="fixed bottom-4 right-4 z-50 flex h-[620px] w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-hidden rounded-3xl border border-blue-100 bg-white shadow-2xl sm:bottom-6 sm:right-6">
+          <div className="flex items-center justify-between bg-gradient-to-r from-[#0B2545] to-[#1E82BC] px-5 py-4 text-white">
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <FiTool className="shrink-0" />
-                <h3 className="truncate text-lg font-bold">Bionic Support Agent</h3>
+                <FiTool className="shrink-0 text-[#48CAE4]" />
+                <h3 className="truncate text-base font-bold">Bionic Support Agent</h3>
               </div>
-              <p className="text-sm text-blue-100">IT support, repairs, networking, and service booking</p>
+              <p className="text-xs text-blue-100">IT support, repairs, networking & services</p>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="rounded p-2 transition hover:bg-blue-700"
+              className="rounded-full p-2 transition hover:bg-white/20"
               aria-label="Close support chat"
             >
-              <FiX size={20} />
+              <FiX size={18} />
             </button>
           </div>
 
-          <div className="border-b border-gray-200 bg-blue-50 px-4 py-3 text-sm text-gray-700">
-            <div className="flex flex-wrap gap-x-4 gap-y-2">
-              <a href={`tel:${BUSINESS_PHONE}`} className="inline-flex items-center gap-1 font-medium text-primary">
+          <div className="border-b border-blue-100 bg-[#F0F7FF] px-4 py-2.5 text-xs text-[#0B2545]">
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              <a href={`tel:${BUSINESS_PHONE}`} className="inline-flex items-center gap-1 font-bold text-[#1E82BC]">
                 <FiPhone /> {DISPLAY_PHONE}
               </a>
-              <span className="inline-flex items-center gap-1">
+              <span className="inline-flex items-center gap-1 text-slate-600">
                 <FiClock /> Mon-Sat support
               </span>
             </div>
           </div>
 
-          <div className="flex-1 space-y-4 overflow-y-auto bg-gray-50 p-4">
+          <div className="flex-1 space-y-4 overflow-y-auto bg-slate-50/50 p-4">
             {messages.map((message) => (
               <div
                 key={message.id}
                 className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[82%] whitespace-pre-wrap rounded-lg px-4 py-3 text-sm leading-relaxed shadow-sm ${
+                  className={`max-w-[85%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-xs leading-relaxed shadow-sm ${
                     message.sender === 'user'
-                      ? 'rounded-br-none bg-primary text-white'
-                      : 'rounded-bl-none border border-gray-200 bg-white text-gray-800'
+                      ? 'rounded-br-none bg-[#1E82BC] text-white font-medium'
+                      : 'rounded-bl-none border border-blue-100 bg-white text-[#0B2545]'
                   }`}
                 >
                   {message.text}
@@ -247,8 +247,8 @@ export default function Chatbot() {
 
             {loading && (
               <div className="flex justify-start">
-                <div className="rounded-lg rounded-bl-none border border-gray-200 bg-white px-4 py-3 text-sm text-gray-600 shadow-sm">
-                  Reviewing your issue...
+                <div className="rounded-2xl rounded-bl-none border border-blue-100 bg-white px-4 py-3 text-xs text-slate-500 shadow-sm">
+                  Reviewing your request...
                 </div>
               </div>
             )}
@@ -256,72 +256,72 @@ export default function Chatbot() {
           </div>
 
           {showBooking && (
-            <div className="absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+            <div className="absolute inset-0 z-50 flex items-center justify-center bg-[#0B2545]/60 backdrop-blur-sm p-4">
               <form
                 onSubmit={handleBookingSubmit}
-                className="max-h-full w-full max-w-sm space-y-3 overflow-y-auto rounded-lg bg-white p-5 shadow-xl"
+                className="max-h-full w-full max-w-sm space-y-3 overflow-y-auto rounded-3xl bg-white p-5 shadow-2xl border border-blue-100"
               >
                 <div className="flex items-center justify-between gap-3">
-                  <h4 className="flex items-center gap-2 text-lg font-bold text-primary">
-                    <FiCalendar /> Service Request
+                  <h4 className="flex items-center gap-2 text-base font-extrabold text-[#0B2545]">
+                    <FiCalendar className="text-[#1E82BC]" /> Service Request
                   </h4>
                   <button
                     type="button"
                     onClick={() => setShowBooking(false)}
-                    className="rounded p-1 text-gray-500 hover:bg-gray-100"
+                    className="rounded-full p-1 text-slate-400 hover:bg-slate-100"
                     aria-label="Close service request"
                   >
                     <FiX />
                   </button>
                 </div>
 
-                <label className="block text-xs font-semibold text-gray-600">
+                <label className="block text-xs font-bold text-[#0B2545]">
                   Name *
-                  <div className="mt-1 flex items-center gap-2 rounded border px-3 py-2 focus-within:border-primary">
-                    <FiUser className="text-gray-400" />
+                  <div className="mt-1 flex items-center gap-2 rounded-xl border border-blue-100 bg-[#F0F7FF]/50 px-3 py-2 focus-within:border-[#1E82BC] focus-within:bg-white">
+                    <FiUser className="text-slate-400" />
                     <input
                       type="text"
                       value={bookingData.name}
                       onChange={(event) => updateBooking('name', event.target.value)}
-                      className="w-full outline-none"
+                      className="w-full outline-none bg-transparent text-xs"
                       required
                     />
                   </div>
                 </label>
 
-                <label className="block text-xs font-semibold text-gray-600">
+                <label className="block text-xs font-bold text-[#0B2545]">
                   Phone or WhatsApp *
-                  <div className="mt-1 flex items-center gap-2 rounded border px-3 py-2 focus-within:border-primary">
-                    <FiPhone className="text-gray-400" />
+                  <div className="mt-1 flex items-center gap-2 rounded-xl border border-blue-100 bg-[#F0F7FF]/50 px-3 py-2 focus-within:border-[#1E82BC] focus-within:bg-white">
+                    <FiPhone className="text-slate-400" />
                     <input
                       type="tel"
                       value={bookingData.phone}
                       onChange={(event) => updateBooking('phone', event.target.value)}
-                      className="w-full outline-none"
+                      className="w-full outline-none bg-transparent text-xs"
                       required
                     />
                   </div>
                 </label>
 
-                <label className="block text-xs font-semibold text-gray-600">
+                <label className="block text-xs font-bold text-[#0B2545]">
                   Email
-                  <div className="mt-1 flex items-center gap-2 rounded border px-3 py-2 focus-within:border-primary">
-                    <FiMail className="text-gray-400" />
+                  <div className="mt-1 flex items-center gap-2 rounded-xl border border-blue-100 bg-[#F0F7FF]/50 px-3 py-2 focus-within:border-[#1E82BC] focus-within:bg-white">
+                    <FiMail className="text-slate-400" />
                     <input
                       type="email"
                       value={bookingData.email}
                       onChange={(event) => updateBooking('email', event.target.value)}
-                      className="w-full outline-none"
+                      className="w-full outline-none bg-transparent text-xs"
                     />
                   </div>
                 </label>
 
-                <label className="block text-xs font-semibold text-gray-600">
+                <label className="block text-xs font-bold text-[#0B2545]">
                   Service *
                   <select
                     value={bookingData.service}
                     onChange={(event) => updateBooking('service', event.target.value)}
-                    className="mt-1 w-full rounded border px-3 py-2 outline-none focus:border-primary"
+                    className="mt-1 w-full rounded-xl border border-blue-100 bg-[#F0F7FF]/50 px-3 py-2 text-xs outline-none focus:border-[#1E82BC] focus:bg-white"
                     required
                   >
                     <option value="">Select a service</option>
@@ -334,51 +334,51 @@ export default function Chatbot() {
                 </label>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <label className="block text-xs font-semibold text-gray-600">
+                  <label className="block text-xs font-bold text-[#0B2545]">
                     Area
                     <input
                       type="text"
                       value={bookingData.area}
                       onChange={(event) => updateBooking('area', event.target.value)}
-                      className="mt-1 w-full rounded border px-3 py-2 outline-none focus:border-primary"
+                      className="mt-1 w-full rounded-xl border border-blue-100 bg-[#F0F7FF]/50 px-3 py-2 text-xs outline-none focus:border-[#1E82BC] focus:bg-white"
                       placeholder="Karachi area"
                     />
                   </label>
-                  <label className="block text-xs font-semibold text-gray-600">
+                  <label className="block text-xs font-bold text-[#0B2545]">
                     Preferred time
                     <input
                       type="time"
                       value={bookingData.time}
                       onChange={(event) => updateBooking('time', event.target.value)}
-                      className="mt-1 w-full rounded border px-3 py-2 outline-none focus:border-primary"
+                      className="mt-1 w-full rounded-xl border border-blue-100 bg-[#F0F7FF]/50 px-3 py-2 text-xs outline-none focus:border-[#1E82BC] focus:bg-white"
                     />
                   </label>
                 </div>
 
-                <label className="block text-xs font-semibold text-gray-600">
+                <label className="block text-xs font-bold text-[#0B2545]">
                   Preferred date
                   <input
                     type="date"
                     value={bookingData.date}
                     onChange={(event) => updateBooking('date', event.target.value)}
-                    className="mt-1 w-full rounded border px-3 py-2 outline-none focus:border-primary"
+                    className="mt-1 w-full rounded-xl border border-blue-100 bg-[#F0F7FF]/50 px-3 py-2 text-xs outline-none focus:border-[#1E82BC] focus:bg-white"
                   />
                 </label>
 
-                <label className="block text-xs font-semibold text-gray-600">
+                <label className="block text-xs font-bold text-[#0B2545]">
                   Issue details
                   <textarea
                     value={bookingData.issue}
                     onChange={(event) => updateBooking('issue', event.target.value)}
                     rows="3"
-                    className="mt-1 w-full resize-none rounded border px-3 py-2 outline-none focus:border-primary"
+                    className="mt-1 w-full resize-none rounded-xl border border-blue-100 bg-[#F0F7FF]/50 px-3 py-2 text-xs outline-none focus:border-[#1E82BC] focus:bg-white"
                     placeholder="Example: office internet is down, laptop is not turning on"
                   />
                 </label>
 
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center gap-2 rounded bg-primary px-4 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#1E82BC] px-4 py-3 text-xs font-bold text-white transition hover:bg-[#16699B] disabled:opacity-50"
                   disabled={!canSendLead}
                 >
                   <FiCheckCircle /> Send on WhatsApp
@@ -387,14 +387,14 @@ export default function Chatbot() {
             </div>
           )}
 
-          <div className="border-t bg-white p-4">
-            <div className="mb-3 flex flex-wrap gap-2">
+          <div className="border-t border-blue-100 bg-white p-3.5">
+            <div className="mb-2.5 flex flex-wrap gap-1.5">
               {quickPrompts.map((prompt) => (
                 <button
                   key={prompt}
                   onClick={() => sendMessage(prompt)}
                   disabled={loading}
-                  className="rounded-full border border-blue-200 px-3 py-1 text-xs font-medium text-primary transition hover:bg-blue-50 disabled:opacity-50"
+                  className="rounded-full border border-blue-100 bg-[#F0F7FF] px-2.5 py-1 text-[11px] font-semibold text-[#1E82BC] transition hover:bg-[#1E82BC] hover:text-white disabled:opacity-50"
                 >
                   {prompt}
                 </button>
@@ -411,17 +411,17 @@ export default function Chatbot() {
                     sendMessage();
                   }
                 }}
-                placeholder="Describe the issue..."
+                placeholder="Describe your IT issue..."
                 disabled={loading}
-                className="min-w-0 flex-1 rounded-lg border px-3 py-2 text-sm outline-none transition focus:border-primary disabled:bg-gray-100"
+                className="min-w-0 flex-1 rounded-xl border border-blue-100 bg-[#F0F7FF]/50 px-3 py-2.5 text-xs outline-none transition focus:border-[#1E82BC] focus:bg-white disabled:bg-slate-100 text-[#0B2545]"
               />
               <button
                 onClick={() => sendMessage()}
                 disabled={loading || !input.trim()}
-                className="rounded-lg bg-primary p-3 text-white transition hover:bg-blue-700 disabled:opacity-50"
+                className="rounded-xl bg-[#1E82BC] p-2.5 text-white transition hover:bg-[#16699B] disabled:opacity-50"
                 aria-label="Send message"
               >
-                <FiSend size={18} />
+                <FiSend size={16} />
               </button>
             </div>
           </div>

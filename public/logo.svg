@@ -1,21 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
-  <!-- Background -->
-  <rect width="200" height="60" fill="#ffffff" rx="10"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 110" width="360" height="110">
+  <defs>
+    <linearGradient id="bionicBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2892D7"/>
+      <stop offset="100%" stop-color="#1E82BC"/>
+    </linearGradient>
+  </defs>
   
-  <!-- Circuit pattern (tech style) -->
-  <circle cx="25" cy="30" r="12" fill="#0052CC" opacity="0.8"/>
-  <circle cx="25" cy="30" r="8" fill="none" stroke="#FF6B35" stroke-width="1.5"/>
+  <!-- Icon Symbol: Bionic 'b' with top cross -->
+  <g transform="translate(10, 5)">
+    <!-- Top vertical stem -->
+    <rect x="34" y="5" width="22" height="60" fill="url(#bionicBlue)" rx="3"/>
+    <!-- Cross horizontal beam -->
+    <rect x="0" y="24" width="48" height="14" fill="url(#bionicBlue)" rx="3"/>
+    <!-- Outer loop of 'b' -->
+    <path d="M 34 50 L 110 50 A 24 24 0 0 1 134 74 L 134 74 A 24 24 0 0 1 110 98 L 58 98 A 24 24 0 0 1 34 74 Z" fill="none" stroke="url(#bionicBlue)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Brand Typography -->
+  <!-- BIONIC COMPUTER -->
+  <text x="165" y="44" font-family="'Inter', 'Arial Black', sans-serif" font-size="21" font-weight="900" letter-spacing="2.5" fill="#1E82BC">BIONIC COMPUTER</text>
   
-  <!-- Lines connecting (tech aesthetic) -->
-  <line x1="37" y1="30" x2="55" y2="30" stroke="#0052CC" stroke-width="2"/>
-  <circle cx="60" cy="30" r="4" fill="#0052CC"/>
+  <!-- Top Accent Bar -->
+  <path d="M 165 54 L 350 54" stroke="#1E82BC" stroke-width="2.5" stroke-linecap="round"/>
   
-  <!-- Text: Bionic -->
-  <text x="75" y="38" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1A1A1A">Bionic</text>
+  <!-- Tagline: WE CARE YOUR SYSTEM -->
+  <text x="175" y="70" font-family="'Inter', Arial, sans-serif" font-size="12" font-weight="700" font-style="italic" letter-spacing="2" fill="#0B2545">WE CARE YOUR SYSTEM</text>
   
-  <!-- Text: Computer -->
-  <text x="75" y="55" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#FF6B35">COMPUTER</text>
-  
-  <!-- Accent dot -->
-  <circle cx="195" cy="15" r="3" fill="#FF6B35"/>
+  <!-- Bottom Accent Bar -->
+  <path d="M 165 78 L 350 78" stroke="#1E82BC" stroke-width="2.5" stroke-linecap="round"/>
 </svg>

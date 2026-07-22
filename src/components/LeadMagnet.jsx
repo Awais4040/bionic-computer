@@ -37,72 +37,75 @@ export default function LeadMagnet() {
   };
 
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-r from-primary to-blue-700 text-white">
-      <div className="container mx-auto px-4">
+    <section className="py-16 md:py-24 bg-gradient-to-r from-[#0B2545] via-[#133663] to-[#1E82BC] text-white relative">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto">
           {/* Heading */}
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            <span className="text-[#48CAE4] bg-white/10 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3 inline-block">
+              Free Security Resource
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
               Is Your Office Network Secure?
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Get Our Free IT Audit Checklist
+            <p className="text-lg text-blue-100 mb-8">
+              Get Our Free IT Audit Checklist — Download Instantly
             </p>
           </div>
 
           {/* Benefits List */}
           <div className="grid md:grid-cols-2 gap-6 mb-12">
-            <div className="flex gap-3 items-start">
-              <FiCheck className="text-secondary text-2xl flex-shrink-0 mt-1" />
+            <div className="flex gap-3 items-start bg-white/5 p-4 rounded-2xl border border-white/10">
+              <FiCheck className="text-[#48CAE4] text-2xl flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-bold mb-1">Identify Security Gaps</h3>
-                <p className="text-blue-100 text-sm">Discover vulnerabilities in your current setup</p>
+                <h3 className="font-bold text-white mb-1">Identify Security Gaps</h3>
+                <p className="text-blue-100/80 text-xs">Discover vulnerabilities in your current IT setup</p>
               </div>
             </div>
-            <div className="flex gap-3 items-start">
-              <FiCheck className="text-secondary text-2xl flex-shrink-0 mt-1" />
+            <div className="flex gap-3 items-start bg-white/5 p-4 rounded-2xl border border-white/10">
+              <FiCheck className="text-[#48CAE4] text-2xl flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-bold mb-1">Reduce IT Costs</h3>
-                <p className="text-blue-100 text-sm">Optimize infrastructure spending and efficiency</p>
+                <h3 className="font-bold text-white mb-1">Reduce IT Costs</h3>
+                <p className="text-blue-100/80 text-xs">Optimize infrastructure spending and operational efficiency</p>
               </div>
             </div>
-            <div className="flex gap-3 items-start">
-              <FiCheck className="text-secondary text-2xl flex-shrink-0 mt-1" />
+            <div className="flex gap-3 items-start bg-white/5 p-4 rounded-2xl border border-white/10">
+              <FiCheck className="text-[#48CAE4] text-2xl flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-bold mb-1">Ensure Compliance</h3>
-                <p className="text-blue-100 text-sm">Meet industry standards and best practices</p>
+                <h3 className="font-bold text-white mb-1">Ensure Compliance</h3>
+                <p className="text-blue-100/80 text-xs">Meet industry data protection standards and best practices</p>
               </div>
             </div>
-            <div className="flex gap-3 items-start">
-              <FiCheck className="text-secondary text-2xl flex-shrink-0 mt-1" />
+            <div className="flex gap-3 items-start bg-white/5 p-4 rounded-2xl border border-white/10">
+              <FiCheck className="text-[#48CAE4] text-2xl flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-bold mb-1">Boost Productivity</h3>
-                <p className="text-blue-100 text-sm">Eliminate downtime and infrastructure issues</p>
+                <h3 className="font-bold text-white mb-1">Boost Productivity</h3>
+                <p className="text-blue-100/80 text-xs">Eliminate downtime and frequent computer hardware issues</p>
               </div>
             </div>
           </div>
 
           {/* Email Capture Form */}
-          <form onSubmit={handleSubmit} className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8 border border-white border-opacity-20">
+          <form onSubmit={handleSubmit} className="bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/20 shadow-2xl">
             <div className="flex flex-col md:flex-row gap-4">
               <input
                 type="email"
-                placeholder="Enter your email address"
+                placeholder="Enter your work email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-6 py-4 rounded-lg bg-white text-dark placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary"
+                className="flex-1 px-6 py-4 rounded-xl bg-white text-[#0B2545] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1E82BC] font-medium"
                 required
               />
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-secondary hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-lg inline-flex items-center gap-2 transition disabled:opacity-50 whitespace-nowrap"
+                className="btn-white py-4 px-8 text-base font-bold whitespace-nowrap"
               >
-                <FiDownload /> {loading ? 'Sending...' : 'Download Now'}
+                <FiDownload /> {loading ? 'Sending...' : 'Download Checklist'}
               </button>
             </div>
-            <p className="text-blue-100 text-sm mt-4 text-center">
-              ✓ Free checklist delivered instantly | ✓ No credit card required | ✓ Unsubscribe anytime
+            <p className="text-blue-100/80 text-xs mt-4 text-center">
+              ✓ Free PDF checklist delivered instantly | ✓ No credit card required | ✓ 100% Privacy Guaranteed
             </p>
           </form>
         </div>

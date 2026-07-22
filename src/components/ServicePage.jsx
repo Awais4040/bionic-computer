@@ -14,17 +14,19 @@ export default function ServicePage({ service }) {
       <SeoJsonLd data={serviceJsonLd(service)} />
       <Header />
       <main>
-        <section className="bg-dark text-white py-16 md:py-24">
+        <section className="bg-gradient-to-b from-[#0B2545] via-[#133663] to-[#1E82BC] text-white py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl">
-              <p className="text-secondary font-semibold mb-4">Bionic Computer Karachi</p>
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">{service.name}</h1>
-              <p className="text-xl text-gray-200 leading-relaxed mb-8">{service.hero}</p>
+              <span className="text-[#48CAE4] font-bold text-xs uppercase tracking-wider bg-white/10 px-4 py-1.5 rounded-full mb-4 inline-block">
+                Bionic Computer Karachi
+              </span>
+              <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">{service.name}</h1>
+              <p className="text-lg md:text-xl text-blue-100/90 leading-relaxed mb-8">{service.hero}</p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href={`tel:${business.phone.replace(/\s/g, '')}`} className="btn-secondary inline-flex items-center justify-center gap-2">
+                <a href={`tel:${business.phone.replace(/\s/g, '')}`} className="btn-white inline-flex items-center justify-center gap-2">
                   <FiPhone /> Call {business.phone}
                 </a>
-                <a href={`mailto:${business.email}`} className="btn-outline bg-white inline-flex items-center justify-center gap-2">
+                <a href={`mailto:${business.email}`} className="btn-outline border-white text-white hover:bg-white hover:text-[#0B2545] inline-flex items-center justify-center gap-2">
                   <FiMail /> Email Support
                 </a>
               </div>
@@ -36,24 +38,24 @@ export default function ServicePage({ service }) {
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-start">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-dark mb-5">
-                  Practical support for homes, offices, and businesses
+                <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B2545] mb-5">
+                  Practical IT support for homes, offices, and enterprises
                 </h2>
-                <p className="text-lg text-gray-700 leading-relaxed mb-8">{service.overview}</p>
+                <p className="text-lg text-slate-600 leading-relaxed mb-8">{service.overview}</p>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {service.services.map((item) => (
-                    <div key={item} className="flex gap-3 rounded-lg border border-gray-200 p-4">
-                      <FiCheckCircle className="text-primary text-xl flex-shrink-0 mt-1" />
-                      <span className="text-gray-700">{item}</span>
+                    <div key={item} className="flex gap-3 rounded-2xl border border-blue-100 bg-[#F0F7FF]/50 p-4">
+                      <FiCheckCircle className="text-[#1E82BC] text-xl flex-shrink-0 mt-0.5" />
+                      <span className="text-[#0B2545] font-medium text-sm">{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <aside className="bg-light rounded-xl p-6 border border-gray-200">
-                <h3 className="text-2xl font-bold text-dark mb-4">Need this service?</h3>
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  Share the issue with Bionic Computer and our team will guide you toward the right repair, support, or service visit.
+              <aside className="bg-[#F0F7FF] rounded-3xl p-8 border border-blue-100 shadow-md">
+                <h3 className="text-2xl font-bold text-[#0B2545] mb-4">Need This Service?</h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                  Share your computer or network issue with Bionic Computer. Our engineers will guide you to the fastest solution.
                 </p>
                 <div className="space-y-3">
                   <a href={business.whatsapp} className="btn-primary w-full inline-flex items-center justify-center gap-2">
@@ -68,19 +70,19 @@ export default function ServicePage({ service }) {
           </div>
         </section>
 
-        <section className="py-14 md:py-20 bg-light">
+        <section className="py-14 md:py-20 bg-[#F0F7FF]/50">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">Common Questions</h2>
-              <p className="text-lg text-gray-600">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B2545] mb-4">Common Questions</h2>
+              <p className="text-base text-slate-600">
                 Clear answers before you call, book a visit, or request support.
               </p>
             </div>
             <div className="max-w-3xl mx-auto space-y-4">
               {service.faqs.map((faq) => (
-                <div key={faq.question} className="bg-white rounded-lg p-6 border border-gray-200">
-                  <h3 className="text-xl font-bold text-dark mb-3">{faq.question}</h3>
-                  <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                <div key={faq.question} className="bg-white rounded-2xl p-6 border border-blue-100 shadow-sm">
+                  <h3 className="text-lg font-bold text-[#0B2545] mb-3">{faq.question}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{faq.answer}</p>
                 </div>
               ))}
             </div>
@@ -89,12 +91,12 @@ export default function ServicePage({ service }) {
 
         <section className="py-14 md:py-20 bg-white">
           <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between gap-6 mb-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-dark mb-3">Related Services</h2>
-                <p className="text-gray-600">Explore more Bionic Computer support options in Karachi.</p>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-[#0B2545] mb-2">Related Services</h2>
+                <p className="text-slate-600 text-sm">Explore more Bionic Computer support options in Karachi.</p>
               </div>
-              <Link href="/#services" className="text-primary font-semibold inline-flex items-center gap-2">
+              <Link href="/#services" className="text-[#1E82BC] font-bold inline-flex items-center gap-2 hover:underline">
                 View all services <FiArrowRight />
               </Link>
             </div>
@@ -103,10 +105,10 @@ export default function ServicePage({ service }) {
                 <Link
                   key={item.slug}
                   href={`/services/${item.slug}`}
-                  className="block rounded-xl border border-gray-200 p-6 hover:border-primary hover:shadow-lg transition"
+                  className="block rounded-2xl border border-blue-100 bg-white p-6 hover:border-[#1E82BC]/50 hover:shadow-lg transition duration-200"
                 >
-                  <h3 className="text-xl font-bold text-dark mb-3">{item.shortName}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                  <h3 className="text-lg font-bold text-[#0B2545] mb-2">{item.shortName}</h3>
+                  <p className="text-slate-600 text-xs leading-relaxed">{item.description}</p>
                 </Link>
               ))}
             </div>

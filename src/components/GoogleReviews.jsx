@@ -79,49 +79,54 @@ export default function GoogleReviews() {
       {[...Array(5)].map((_, i) => (
         <FiStar
           key={i}
-          className={`w-4 h-4 ${i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`}
+          className={`w-4 h-4 ${i < rating ? 'fill-[#1E82BC] text-[#1E82BC]' : 'text-slate-200'}`}
         />
       ))}
     </div>
   );
 
   return (
-    <section id="reviews" className="py-12 md:py-16 bg-white">
+    <section id="reviews" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-[#1E82BC] bg-[#F0F7FF] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3 inline-block">
+            Google Reviews
+          </span>
           <h2 className="section-title">What Our Customers Say</h2>
           <p className="section-subtitle">Join {totalReviews}+ satisfied businesses trusting us with their IT needs</p>
         </div>
 
         {/* Rating Summary */}
-        <div className="max-w-4xl mx-auto bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-8 md:p-12 mb-16">
+        <div className="max-w-4xl mx-auto bg-gradient-to-r from-[#F0F7FF] via-blue-50 to-[#EBF5FB] border border-blue-100 rounded-3xl p-8 md:p-12 mb-16 shadow-sm">
           <div className="grid md:grid-cols-3 gap-8 items-center">
             {/* Average Rating */}
             <div className="text-center">
-              <div className="text-5xl font-bold text-primary mb-2">{averageRating}</div>
-              <StarRating rating={5} />
-              <p className="text-gray-600 mt-2 font-semibold">{totalReviews}+ Reviews</p>
+              <div className="text-5xl font-black text-[#1E82BC] mb-2">{averageRating}</div>
+              <div className="flex justify-center mb-2">
+                <StarRating rating={5} />
+              </div>
+              <p className="text-[#0B2545] font-bold text-sm">{totalReviews}+ Reviews</p>
             </div>
 
             {/* Rating Info */}
             <div className="md:col-span-2">
-              <p className="text-gray-700 font-semibold mb-4">
+              <p className="text-[#0B2545] font-bold text-base mb-4">
                 Trusted by {totalReviews}+ satisfied customers across Karachi
               </p>
               <div className="space-y-3">
                 {[5, 4, 3, 2, 1].map((stars) => (
                   <div key={stars} className="flex items-center gap-2">
-                    <span className="text-sm text-gray-600 w-8">{stars}★</span>
-                    <div className="flex-1 bg-gray-200 rounded-full h-2 overflow-hidden">
+                    <span className="text-xs font-semibold text-slate-600 w-8">{stars}★</span>
+                    <div className="flex-1 bg-slate-200 rounded-full h-2 overflow-hidden">
                       <div
-                        className="bg-yellow-400 h-full"
+                        className="bg-[#1E82BC] h-full"
                         style={{
                           width: `${stars === 5 ? 100 : 0}%`,
                         }}
                       ></div>
                     </div>
-                    <span className="text-sm text-gray-600 w-8">{stars === 5 ? '100%' : '0%'}</span>
+                    <span className="text-xs font-semibold text-slate-600 w-10 text-right">{stars === 5 ? '100%' : '0%'}</span>
                   </div>
                 ))}
               </div>
@@ -134,29 +139,31 @@ export default function GoogleReviews() {
           {displayedReviews.map((review) => (
             <div
               key={review.id}
-              className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition"
+              className="bg-white border border-blue-100 rounded-2xl p-6 hover:shadow-lg transition duration-200 flex flex-col justify-between"
             >
-              {/* Review Header */}
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <p className="font-bold text-dark text-lg">{review.author}</p>
-                  <p className="text-sm text-gray-500">{review.title}</p>
+              <div>
+                {/* Review Header */}
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <p className="font-bold text-[#0B2545] text-base">{review.author}</p>
+                    <p className="text-xs text-slate-500">{review.title}</p>
+                  </div>
+                  {review.verified && (
+                    <span className="bg-blue-50 text-[#1E82BC] border border-blue-200 text-xs font-bold px-2.5 py-1 rounded-full">
+                      ✓ Verified
+                    </span>
+                  )}
                 </div>
-                {review.verified && (
-                  <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">
-                    ✓ Verified
-                  </span>
-                )}
-              </div>
 
-              {/* Rating */}
-              <div className="mb-4">
-                <StarRating rating={review.rating} />
-                <p className="text-xs text-gray-500 mt-2">{review.date}</p>
-              </div>
+                {/* Rating */}
+                <div className="mb-4 flex items-center justify-between">
+                  <StarRating rating={review.rating} />
+                  <p className="text-[11px] text-slate-400">{review.date}</p>
+                </div>
 
-              {/* Review Text */}
-              <p className="text-gray-700 leading-relaxed italic">"{review.text}"</p>
+                {/* Review Text */}
+                <p className="text-slate-700 text-sm leading-relaxed italic">"{review.text}"</p>
+              </div>
             </div>
           ))}
         </div>
@@ -166,7 +173,7 @@ export default function GoogleReviews() {
           <div className="flex justify-center mb-12">
             <button
               onClick={() => setShowAllReviews(true)}
-              className="inline-flex items-center gap-2 bg-primary hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg transition"
+              className="btn-primary py-3.5 px-8 text-base"
             >
               Load All {totalReviews} Reviews
               <FiChevronDown />
@@ -179,7 +186,7 @@ export default function GoogleReviews() {
           <div className="flex justify-center mb-12">
             <button
               onClick={() => setShowAllReviews(false)}
-              className="inline-flex items-center gap-2 bg-gray-600 hover:bg-gray-700 text-white font-bold py-4 px-8 rounded-lg transition"
+              className="btn-secondary py-3.5 px-8 text-base"
             >
               Show Less
               <FiChevronDown className="rotate-180" />
@@ -188,16 +195,16 @@ export default function GoogleReviews() {
         )}
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-primary to-blue-600 rounded-2xl p-8 md:p-12 text-white text-center">
-          <h3 className="text-3xl font-bold mb-4">Share Your Experience</h3>
-          <p className="text-lg text-blue-100 mb-8">
-            Have you worked with us? Leave a review on our Google Business Profile
+        <div className="bg-gradient-to-r from-[#0B2545] via-[#133663] to-[#1E82BC] rounded-3xl p-8 md:p-12 text-white text-center shadow-xl">
+          <h3 className="text-2xl md:text-3xl font-extrabold mb-4">Share Your Experience With Us</h3>
+          <p className="text-base text-blue-100 mb-8 max-w-xl mx-auto">
+            Have you worked with Bionic Computer? Leave a review on our Google Business Profile and help others find reliable IT support.
           </p>
           <a
             href="https://share.google/daR3L0R8wJOqwVeF5"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-primary font-bold py-4 px-8 rounded-lg transition"
+            className="btn-white py-3.5 px-8 text-base inline-flex items-center gap-2"
           >
             <FiExternalLink /> Leave a Review on Google
           </a>

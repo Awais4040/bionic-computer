@@ -11,6 +11,7 @@ import {
   FiPhoneCall,
   FiCloud,
   FiTool,
+  FiArrowUpRight,
 } from 'react-icons/fi';
 import { services as seoServices } from '@/lib/seoData';
 
@@ -67,25 +68,41 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-20 md:py-32 bg-light">
+    <section id="services" className="py-20 md:py-28 bg-[#F0F7FF]/50 relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="section-title">Our Services</h2>
-          <p className="section-subtitle">Comprehensive IT solutions tailored to your business needs</p>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-[#1E82BC] bg-blue-100/60 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3 inline-block">
+            Our Core Competencies
+          </span>
+          <h2 className="section-title">Professional IT Solutions</h2>
+          <p className="section-subtitle">
+            Engineered to keep your computer hardware, servers, networks, and business infrastructure running smoothly.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <Link
                 key={index}
                 href={service.href}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:scale-105"
+                className="group bg-white p-7 rounded-2xl border border-blue-100 shadow-sm hover:shadow-xl hover:border-[#1E82BC]/40 transition duration-300 flex flex-col justify-between"
               >
-                <Icon className="text-4xl text-primary mb-4" />
-                <h3 className="text-xl font-bold text-dark mb-3">{service.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                <div>
+                  <div className="w-14 h-14 rounded-xl bg-[#F0F7FF] group-hover:bg-[#1E82BC] text-[#1E82BC] group-hover:text-white flex items-center justify-center text-2xl transition duration-300 mb-6">
+                    <Icon />
+                  </div>
+                  <h3 className="text-lg font-bold text-[#0B2545] group-hover:text-[#1E82BC] transition mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                    {service.description}
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-bold text-[#1E82BC] group-hover:translate-x-1 transition">
+                  Learn More <FiArrowUpRight className="text-base" />
+                </div>
               </Link>
             );
           })}
